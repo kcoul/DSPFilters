@@ -2,3 +2,8 @@ build
 .waf*
 .lock*
 .*.sw*
+.DS_Store
+shared/.DS_Store
+shared/.idea
+shared/DSPFiltersDemo/.DS_Store
+shared/cmake-build-*

@@ -108,6 +108,8 @@ public:
   virtual void reset () = 0;
   virtual void process (int numSamples, float* const* arrayOfChannels) = 0;
   virtual void process (int numSamples, double* const* arrayOfChannels) = 0;
+  virtual void processInterleaved (int numSamples, float* arrayOfFrames) = 0;
+  virtual void processInterleaved (int numSamples, double* arrayOfFrames) = 0;
 
 protected:
   virtual void doSetParams (const Params& parameters) = 0;
@@ -223,6 +225,17 @@ public:
                      FilterDesignBase<DesignClass>::m_design);
   }
 
+  void processInterleaved (int numSamples, float* arrayOfFrames) override
+  {
+    m_state.processInterleaved (numSamples, arrayOfFrames,
+                                FilterDesignBase<DesignClass>::m_design);
+  }
+
+  void processInterleaved (int numSamples, double* arrayOfFrames) override
+  {
+    m_state.processInterleaved (numSamples, arrayOfFrames,
+                                FilterDesignBase<DesignClass>::m_design);
+  }
 protected:
   ChannelsState <Channels,
                  typename DesignClass::template State <StateType> > m_state;
@@ -257,6 +270,12 @@ public:
   void process (int numSamples, Sample* const* arrayOfChannels)
   {
     m_state.process (numSamples, arrayOfChannels, *((FilterClass*)this));
+  }
+
+  template <typename Sample>
+  void processInterleaved (int numSamples, Sample* arrayOfFrames)
+  {
+    m_state.processInterleaved (numSamples, arrayOfFrames, *((FilterClass*)this));
   }
 
 protected:
