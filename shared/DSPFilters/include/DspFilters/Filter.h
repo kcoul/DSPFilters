@@ -195,7 +195,7 @@ protected:
 
 template <class DesignClass,
           int Channels = 0,
-          class StateType = DirectFormII>
+          class StateType = DirectFormII<float>>
 class FilterDesign : public FilterDesignBase <DesignClass>
 {
 public:
@@ -252,7 +252,7 @@ protected:
  */
 template <class FilterClass,
           int Channels = 0,
-          class StateType = DirectFormII>
+          class StateType = DirectFormII<float>>
 class SimpleFilter : public FilterClass
 {
 public:

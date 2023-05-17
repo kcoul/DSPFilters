@@ -338,7 +338,7 @@ void UsageExamples ()
   // Output samples are generated using Direct Form II realization.
   {
     Dsp::Filter* f = new Dsp::SmoothedFilterDesign
-      <Dsp::Butterworth::Design::BandPass <4>, 2, Dsp::DirectFormII> (1024);
+      <Dsp::Butterworth::Design::BandPass <4>, 2, Dsp::DirectFormII<float>> (1024);
     Dsp::Params params;
     params[0] = 44100; // sample rate
     params[1] = 4; // order
