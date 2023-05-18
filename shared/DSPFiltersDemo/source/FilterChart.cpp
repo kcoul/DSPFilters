@@ -43,11 +43,11 @@ FilterChart::FilterChart (FilterListeners& listeners)
 {
   setOpaque (true);
 
-	m_cBack       = Colour (0xfff8f8f8);
-	m_cFrame      = Colour (0xff808080);
-	m_cAxis       = Colour (0x80000000);
-	m_cAxisMinor  = Colour (0x20000000);
-	m_cText       = Colour (0xd0000000);
+	m_cBack       = juce::Colour (0xfff8f8f8);
+	m_cFrame      = juce::Colour (0xff808080);
+	m_cAxis       = juce::Colour (0x80000000);
+	m_cAxisMinor  = juce::Colour (0x20000000);
+	m_cText       = juce::Colour (0xd0000000);
 
   m_listeners.add (this);
 }
@@ -57,10 +57,10 @@ FilterChart::~FilterChart()
   m_listeners.remove (this);
 }
 
-void FilterChart::paint (Graphics& g)
+void FilterChart::paint (juce::Graphics& g)
 {
-  const Rectangle<int> bounds = getLocalBounds ();
-	const Rectangle<int> r = bounds;
+  const juce::Rectangle<int> bounds = getLocalBounds ();
+	const juce::Rectangle<int> r = bounds;
 
   g.setColour (m_cBack);
 	g.fillRect (r.reduced (1, 1));
@@ -89,27 +89,27 @@ void FilterChart::onFilterParameters ()
   update ();
 }
 
-const String FilterChart::getName() const
+const juce::String FilterChart::getName() const
 {
-  return String::empty;
+  return juce::String();
 }
 
-void FilterChart::drawText (Graphics &g,
-                      const Point<int> ptOrigin,
-                      const String text,
-                      Justification just)
+void FilterChart::drawText (juce::Graphics &g,
+                      const juce::Point<int> ptOrigin,
+                      const juce::String text,
+                            juce::Justification just)
 {
-  const Font& font = g.getCurrentFont();
+  const juce::Font& font = g.getCurrentFont();
   const int w = font.getStringWidth(text);
 
   int x, y;
 
-  if (just.getOnlyHorizontalFlags() & Justification::right)
+  if (just.getOnlyHorizontalFlags() & juce::Justification::right)
     x = ptOrigin.getX() - w;
   else
     x = ptOrigin.getX();
 
-  if (just.getOnlyVerticalFlags() & Justification::top)
+  if (just.getOnlyVerticalFlags() & juce::Justification::top)
     y = int (ptOrigin.getY() + font.getAscent() + 0.5);
   else
     y = ptOrigin.getY();
@@ -117,14 +117,14 @@ void FilterChart::drawText (Graphics &g,
   g.drawSingleLineText (text, x, y);
 }
 
-void FilterChart::paintName (Graphics& g)
+void FilterChart::paintName (juce::Graphics& g)
 {
-	const Rectangle<int> bounds = getLocalBounds ();
-  const String name = getName ();
+	const juce::Rectangle<int> bounds = getLocalBounds ();
+  const juce::String name = getName ();
 
   g.setColour (m_cText);
-  drawText (g, Point<int> (bounds.getRight() - 4, bounds.getY() + 4),
-    name, Justification::topRight);
+  drawText (g, juce::Point<int> (bounds.getRight() - 4, bounds.getY() + 4),
+    name, juce::Justification::topRight);
 }
 
 //------------------------------------------------------------------------------
@@ -138,12 +138,12 @@ FrequencyChart::~FrequencyChart ()
 {
 }
 
-void FrequencyChart::paintOverChildren (Graphics& g)
+void FrequencyChart::paintOverChildren (juce::Graphics& g)
 {
-  const Rectangle<int>& bounds = getLocalBounds();
-  Rectangle <int> r = bounds.reduced (1, 1);
+  const juce::Rectangle<int>& bounds = getLocalBounds();
+    juce::Rectangle <int> r = bounds.reduced (1, 1);
 
-  g.setColour (Colour::fromRGBA (0, 0, 0, 32));
+  g.setColour (juce::Colour::fromRGBA (0, 0, 0, 32));
 #if 0
   for (int i = -3; i < 6; ++i)
   {

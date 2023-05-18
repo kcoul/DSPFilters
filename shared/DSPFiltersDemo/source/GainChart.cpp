@@ -44,23 +44,23 @@ GainChart::GainChart (FilterListeners& listeners)
 {
 }
 
-const String GainChart::getName () const
+const juce::String GainChart::getName () const
 {
   return "Gain (dB)";
 }
 
 int GainChart::yToScreen (float y)
 {
-  AffineTransform t = calcTransform();
-  Point<float> p (0, y);
+    juce::AffineTransform t = calcTransform();
+    juce::Point<float> p (0, y);
   return int(p.transformedBy (t).getY());
 }
 
-void GainChart::paintContents (Graphics& g)
+void GainChart::paintContents (juce::Graphics& g)
 {
-  AffineTransform t = calcTransform();
+    juce::AffineTransform t = calcTransform();
 
-  g.setColour (Colours::black);
+  g.setColour (juce::Colours::black);
   drawDbLine (g, 0, false);
 
   g.setColour (m_cAxisMinor);
@@ -81,8 +81,8 @@ void GainChart::paintContents (Graphics& g)
       break;
 
   // path
-  g.setColour (Colours::blue);
-  g.strokePath (m_path, 1, t);
+  g.setColour (juce::Colours::blue);
+  g.strokePath (m_path, juce::PathStrokeType(1), t);
 }
 
 /*
@@ -100,8 +100,8 @@ void GainChart::update ()
   {
     m_isDefined = true;
 
-    const Rectangle<int> bounds = getLocalBounds ();
-    const Rectangle<int> r = bounds.reduced (4, 4);
+    const juce::Rectangle<int> bounds = getLocalBounds ();
+    const juce::Rectangle<int> r = bounds.reduced (4, 4);
 
     for (int xi = 0; xi < r.getWidth(); ++xi )
     {
@@ -137,12 +137,12 @@ void GainChart::update ()
   repaint();
 }
 
-bool GainChart::drawDbLine (Graphics& g, int db, bool drawLabel)
+bool GainChart::drawDbLine (juce::Graphics& g, int db, bool drawLabel)
 {
   bool onScreen = true;
 
-  const Rectangle<int> bounds = getLocalBounds ();
-  const Rectangle<int> r = bounds;
+  const juce::Rectangle<int> bounds = getLocalBounds ();
+  const juce::Rectangle<int> r = bounds;
   const int y = yToScreen (float(db));
 
   if (y >= r.getY() && y < r.getBottom())
@@ -152,9 +152,9 @@ bool GainChart::drawDbLine (Graphics& g, int db, bool drawLabel)
     if (drawLabel)
     {
       if (db >= 0)
-        drawText (g, Point<int> (r.getX()+6, y-2), String(db));
+        drawText (g, juce::Point<int> (r.getX()+6, y-2), juce::String(db));
       else
-        drawText (g, Point<int> (r.getX()+6, y+2), String(db), Justification::topLeft);
+        drawText (g, juce::Point<int> (r.getX()+6, y+2), juce::String(db), juce::Justification::topLeft);
     }
   }
   else
@@ -165,17 +165,17 @@ bool GainChart::drawDbLine (Graphics& g, int db, bool drawLabel)
   return onScreen;
 }
 
-AffineTransform GainChart::calcTransform ()
+juce::AffineTransform GainChart::calcTransform ()
 {
-  const Rectangle<int> bounds = getLocalBounds ();
-  const Rectangle<int> r = bounds.reduced (4, 4);
+  const juce::Rectangle<int> bounds = getLocalBounds ();
+  const juce::Rectangle<int> r = bounds.reduced (4, 4);
 
-  float maxDb = jmax (m_maxDb, float(kMaxDb));
+  float maxDb = juce::jmax (m_maxDb, float(kMaxDb));
 
-  AffineTransform t;
+    juce::AffineTransform t;
 
   // scale x from 0..1 to 0..getWidth(), and flip vertical
-  t = AffineTransform::scale (float(r.getWidth()), -1.f);
+  t = juce::AffineTransform::scale (float(r.getWidth()), -1.f);
 
   // move y down so maxDb is at the top
   t = t.translated (0, maxDb);

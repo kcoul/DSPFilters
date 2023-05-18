@@ -41,11 +41,11 @@ THE SOFTWARE.
 #include "FilterListener.h"
 
 class MainPanel :
-	public Component,
-  public MenuBarModel,
-	public ButtonListener,
-  public SliderListener,
-	public ComboBoxListener,
+public juce::Component,
+public juce::MenuBarModel,
+public juce::Button::Listener,
+public juce::Slider::Listener,
+public juce::ComboBox::Listener,
   public TopLevelResizableLayout,
   public FilterListener
 {
@@ -53,22 +53,22 @@ public:
   MainPanel();
   ~MainPanel();
 
-  void createCharts (const Rectangle<int>& r);
-  void buildFamilyMenu (ComboBox* comboBox);
-  void buildTypeMenu (ComboBox* comboBox);
+  void createCharts (const juce::Rectangle<int>& r);
+  void buildFamilyMenu (juce::ComboBox* comboBox);
+  void buildTypeMenu (juce::ComboBox* comboBox);
 
-  void paint (Graphics& g);
+  void paint (juce::Graphics& g);
 
   void setAudio (int audioId);
 
-  void buttonClicked (Button *ctrl);
-  void sliderValueChanged (Slider* ctrl);
-  void comboBoxChanged (ComboBox* ctrl);
+  void buttonClicked (juce::Button *ctrl);
+  void sliderValueChanged (juce::Slider* ctrl);
+  void comboBoxChanged (juce::ComboBox* ctrl);
 
   void onFilterParameters ();
 
-  const StringArray getMenuBarNames();
-  const PopupMenu getMenuForIndex (int topLevelMenuIndex, const String& menuName);
+  juce::StringArray getMenuBarNames();
+  juce::PopupMenu getMenuForIndex (int topLevelMenuIndex, const juce::String& menuName);
   void menuItemSelected (int menuItemID, int topLevelMenuIndex);
 
 private:
@@ -81,19 +81,19 @@ private:
   void createFilter ();
 
 private:
-  ListenerList<FilterListener> m_listeners;
-  ComboBox* m_menuFamily;
-  ComboBox* m_menuType;
-  ComboBox* m_menuAudio;
-  ComboBox* m_menuStateType;
-  ComboBox* m_menuSmoothing;
-  Button* m_resetButton;
-  Slider* m_volumeSlider;
-  Slider* m_tempoSlider;
+    juce::ListenerList<FilterListener> m_listeners;
+    juce::ComboBox* m_menuFamily;
+    juce::ComboBox* m_menuType;
+    juce::ComboBox* m_menuAudio;
+    juce::ComboBox* m_menuStateType;
+    juce::ComboBox* m_menuSmoothing;
+    juce::Button* m_resetButton;
+    juce::Slider* m_volumeSlider;
+    juce::Slider* m_tempoSlider;
 
   int m_lastTypeId;
 
-  ScopedPointer<Dsp::Filter> m_filter;
+    juce::ScopedPointer<Dsp::Filter> m_filter;
 };
 
 #endif

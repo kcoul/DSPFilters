@@ -39,7 +39,7 @@ THE SOFTWARE.
 
 SettingsWindow::SettingsWindow ()
 : DialogWindow (TRANS("Settings"),
-                Colour (192,192,192),
+                juce::Colour (192,192,192),
                 true,
                 false) // do not add to desktop yet
 {

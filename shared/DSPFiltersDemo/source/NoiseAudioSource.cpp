@@ -38,7 +38,7 @@ THE SOFTWARE.
 
 NoiseAudioSource::NoiseAudioSource (bool pink)
   : m_pink (pink)
-  , m_random (Time::currentTimeMillis())
+  , m_random (juce::Time::currentTimeMillis())
 {
 }
 
@@ -55,19 +55,19 @@ void NoiseAudioSource::releaseResources()
 {
 }
 
-void NoiseAudioSource::getNextAudioBlock (const AudioSourceChannelInfo& bufferToFill)
+void NoiseAudioSource::getNextAudioBlock (const juce::AudioSourceChannelInfo& bufferToFill)
 {
   if (m_pink)
   {
     for (int i = 0; i < bufferToFill.buffer->getNumChannels(); ++i)
       pink_noise (bufferToFill.numSamples,
-                  bufferToFill.buffer->getArrayOfChannels()[i] + bufferToFill.startSample);
+                  bufferToFill.buffer->getArrayOfWritePointers()[i] + bufferToFill.startSample);
   }
   else
   {
     for (int i = 0; i < bufferToFill.buffer->getNumChannels(); ++i)
       white_noise (bufferToFill.numSamples,
-                   bufferToFill.buffer->getArrayOfChannels()[i] + bufferToFill.startSample);
+                   bufferToFill.buffer->getArrayOfWritePointers()[i] + bufferToFill.startSample);
   }
 }
 

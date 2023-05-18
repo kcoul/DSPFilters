@@ -44,7 +44,7 @@ THE SOFTWARE.
  * The filter parameters can be changed during playback.
  *
  */
-class FilteringAudioSource : public AudioSource
+class FilteringAudioSource : public juce::AudioSource
 {
 public:
   FilteringAudioSource ();
@@ -63,12 +63,12 @@ public:
 
   void releaseResources();
 
-  void getNextAudioBlock (const AudioSourceChannelInfo& bufferToFill);
+  void getNextAudioBlock (const juce::AudioSourceChannelInfo& bufferToFill);
 
 private:
   double m_sampleRate;
-  ScopedPointer<AudioSource> m_source;
-  ScopedPointer<Dsp::Filter> m_filter;
+    juce::ScopedPointer<AudioSource> m_source;
+    juce::ScopedPointer<Dsp::Filter> m_filter;
 };
 
 #endif

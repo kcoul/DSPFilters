@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="GOOIac" name="DSPFiltersDemo" projectType="guiapp" useAppConfig="0"
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1">
+  <MAINGROUP id="BKvH9u" name="DSPFiltersDemo">
+    <GROUP id="{48A13CF8-9C57-37D6-B654-E8A1B946C3DB}" name="Source">
+      <FILE id="qnbcy1" name="AudioOutput.cpp" compile="1" resource="0" file="Source/AudioOutput.cpp"/>
+      <FILE id="GWAUVi" name="AudioOutput.h" compile="0" resource="0" file="Source/AudioOutput.h"/>
+      <FILE id="lJXpUA" name="binaries.cpp" compile="1" resource="0" file="Source/binaries.cpp"/>
+      <FILE id="VOFgUI" name="binaries.h" compile="0" resource="0" file="Source/binaries.h"/>
+      <FILE id="pa2JGM" name="bond.h" compile="0" resource="0" file="Source/bond.h"/>
+      <FILE id="MSrPh0" name="BrickWallChart.cpp" compile="1" resource="0"
+            file="Source/BrickWallChart.cpp"/>
+      <FILE id="qAozTf" name="BrickWallChart.h" compile="0" resource="0"
+            file="Source/BrickWallChart.h"/>
+      <FILE id="XZLv47" name="Common.h" compile="0" resource="0" file="Source/Common.h"/>
+      <FILE id="oG8zoU" name="ContentComponentConstrainer.h" compile="0"
+            resource="0" file="Source/ContentComponentConstrainer.h"/>
+      <FILE id="Fjo63D" name="CpuMeter.cpp" compile="1" resource="0" file="Source/CpuMeter.cpp"/>
+      <FILE id="zGC0GB" name="CpuMeter.h" compile="0" resource="0" file="Source/CpuMeter.h"/>
+      <FILE id="KFxoyZ" name="CustomSlider.h" compile="0" resource="0" file="Source/CustomSlider.h"/>
+      <FILE id="Q4cVoA" name="FilterChart.cpp" compile="1" resource="0" file="Source/FilterChart.cpp"/>
+      <FILE id="pav5p3" name="FilterChart.h" compile="0" resource="0" file="Source/FilterChart.h"/>
+      <FILE id="ZGQAv1" name="FilterControls.cpp" compile="1" resource="0"
+            file="Source/FilterControls.cpp"/>
+      <FILE id="wjSb0e" name="FilterControls.h" compile="0" resource="0"
+            file="Source/FilterControls.h"/>
+      <FILE id="xoiK4D" name="FilteringAudioSource.cpp" compile="1" resource="0"
+            file="Source/FilteringAudioSource.cpp"/>
+      <FILE id="XmJ2me" name="FilteringAudioSource.h" compile="0" resource="0"
+            file="Source/FilteringAudioSource.h"/>
+      <FILE id="iurbta" name="FilterListener.h" compile="0" resource="0"
+            file="Source/FilterListener.h"/>
+      <FILE id="icrlJD" name="GainChart.cpp" compile="1" resource="0" file="Source/GainChart.cpp"/>
+      <FILE id="gwEZWl" name="GainChart.h" compile="0" resource="0" file="Source/GainChart.h"/>
+      <FILE id="uLI0jA" name="GroupDelayChart.cpp" compile="1" resource="0"
+            file="Source/GroupDelayChart.cpp"/>
+      <FILE id="wVgHw6" name="GroupDelayChart.h" compile="0" resource="0"
+            file="Source/GroupDelayChart.h"/>
+      <FILE id="yzxYoS" name="MainApp.cpp" compile="1" resource="0" file="Source/MainApp.cpp"/>
+      <FILE id="vHycKM" name="MainApp.h" compile="0" resource="0" file="Source/MainApp.h"/>
+      <FILE id="IKUYzq" name="MainPanel.cpp" compile="1" resource="0" file="Source/MainPanel.cpp"/>
+      <FILE id="pv0oZa" name="MainPanel.h" compile="0" resource="0" file="Source/MainPanel.h"/>
+      <FILE id="YBdTCy" name="MainWindow.cpp" compile="1" resource="0" file="Source/MainWindow.cpp"/>
+      <FILE id="HkVNuf" name="MainWindow.h" compile="0" resource="0" file="Source/MainWindow.h"/>
+      <FILE id="teZpXR" name="NoiseAudioSource.cpp" compile="1" resource="0"
+            file="Source/NoiseAudioSource.cpp"/>
+      <FILE id="mW1p3k" name="NoiseAudioSource.h" compile="0" resource="0"
+            file="Source/NoiseAudioSource.h"/>
+      <FILE id="CFYHEO" name="PhaseChart.cpp" compile="1" resource="0" file="Source/PhaseChart.cpp"/>
+      <FILE id="ISSXK1" name="PhaseChart.h" compile="0" resource="0" file="Source/PhaseChart.h"/>
+      <FILE id="nUPA5v" name="PoleZeroChart.cpp" compile="1" resource="0"
+            file="Source/PoleZeroChart.cpp"/>
+      <FILE id="Z9MRKJ" name="PoleZeroChart.h" compile="0" resource="0" file="Source/PoleZeroChart.h"/>
+      <FILE id="yMdZDF" name="Precompile.cpp" compile="1" resource="0" file="Source/Precompile.cpp"/>
+      <FILE id="JPml5S" name="ResamplingReader.cpp" compile="1" resource="0"
+            file="Source/ResamplingReader.cpp"/>
+      <FILE id="V3WAaz" name="ResamplingReader.h" compile="0" resource="0"
+            file="Source/ResamplingReader.h"/>
+      <FILE id="rzNo4I" name="ResizableLayout.cpp" compile="1" resource="0"
+            file="Source/ResizableLayout.cpp"/>
+      <FILE id="RJQgIi" name="ResizableLayout.h" compile="0" resource="0"
+            file="Source/ResizableLayout.h"/>
+      <FILE id="PBbW1t" name="SettingsPanel.cpp" compile="1" resource="0"
+            file="Source/SettingsPanel.cpp"/>
+      <FILE id="Sr6eys" name="SettingsPanel.h" compile="0" resource="0" file="Source/SettingsPanel.h"/>
+      <FILE id="uEvkqS" name="SettingsWindow.cpp" compile="1" resource="0"
+            file="Source/SettingsWindow.cpp"/>
+      <FILE id="tLPdhp" name="SettingsWindow.h" compile="0" resource="0"
+            file="Source/SettingsWindow.h"/>
+      <FILE id="NFgU04" name="SliderGroup.cpp" compile="1" resource="0" file="Source/SliderGroup.cpp"/>
+      <FILE id="FNXjzj" name="SliderGroup.h" compile="0" resource="0" file="Source/SliderGroup.h"/>
+      <FILE id="JAyAKA" name="StepResponseChart.cpp" compile="1" resource="0"
+            file="Source/StepResponseChart.cpp"/>
+      <FILE id="ZPBQzU" name="StepResponseChart.h" compile="0" resource="0"
+            file="Source/StepResponseChart.h"/>
+      <FILE id="N86Jz4" name="ThreadQueue.cpp" compile="1" resource="0" file="Source/ThreadQueue.cpp"/>
+      <FILE id="awe5X8" name="ThreadQueue.h" compile="0" resource="0" file="Source/ThreadQueue.h"/>
+    </GROUP>
+  </MAINGROUP>
+  <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1"/>
+  <EXPORTFORMATS>
+    <XCODE_MAC targetFolder="Builds/MacOSX" externalLibraries="DSPFilters">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" targetName="DSPFiltersDemo" headerPath="../../../DSPFilters/include"/>
+        <CONFIGURATION isDebug="0" name="Release" targetName="DSPFiltersDemo" libraryPath="../../../../cmake-build-release/DSPFilters"
+                       headerPath="../../../DSPFilters/include"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_core" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../../JUCE/modules"/>
+      </MODULEPATHS>
+    </XCODE_MAC>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+  </MODULES>
+</JUCERPROJECT>

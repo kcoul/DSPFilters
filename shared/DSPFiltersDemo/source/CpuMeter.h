@@ -45,22 +45,22 @@ THE SOFTWARE.
  *
  */
 class CpuMeter
-  : public Component
-  , public Timer
+  : public juce::Component
+  , public juce::Timer
   , public ResizableLayout
 {
 public:
-  CpuMeter (AudioDeviceManager& audioDeviceManager);
+  CpuMeter (juce::AudioDeviceManager& audioDeviceManager);
   ~CpuMeter ();
 
-  void paint (Graphics& g);
+  void paint (juce::Graphics& g);
 
 private:
   void timerCallback ();
 
 private:
-  ScopedPointer<Label> m_label;
-  AudioDeviceManager& m_audioDeviceManager;
+    juce::ScopedPointer<juce::Label> m_label;
+    juce::AudioDeviceManager& m_audioDeviceManager;
   double m_value;
 };
 

@@ -39,7 +39,7 @@ THE SOFTWARE.
 #include "bond.h"
 
 AudioOutput::AudioOutput()
-  : m_audioDeviceManager (new AudioDeviceManager)
+  : m_audioDeviceManager (new juce::AudioDeviceManager)
   , m_device (0)
   , m_resampler (0)
   , m_gain (1)
@@ -58,7 +58,7 @@ AudioOutput::AudioOutput()
 
     bufferSize = sampleRate * latencyMilliseconds / 1000;
 
-    AudioDeviceManager::AudioDeviceSetup setup;
+      juce::AudioDeviceManager::AudioDeviceSetup setup;
     m_audioDeviceManager->initialise( 0, 2, 0, true );
     m_audioDeviceManager->setCurrentAudioDeviceType( "DirectSound", false );
     m_audioDeviceManager->getAudioDeviceSetup( setup );
@@ -70,7 +70,7 @@ AudioOutput::AudioOutput()
     setup.useDefaultOutputChannels = true;
     setup.outputChannels = 2;
 
-    String result = m_audioDeviceManager->setAudioDeviceSetup (setup, false);
+      juce::String result = m_audioDeviceManager->setAudioDeviceSetup (setup, false);
 
     m_audioDeviceManager->addAudioCallback (this);
   }
@@ -84,7 +84,7 @@ AudioOutput::~AudioOutput()
 
 void AudioOutput::setGain (float gainDb)
 {
-  m_queue.call (bond (&AudioOutput::doSetGain, this, Decibels::decibelsToGain(gainDb)));
+  m_queue.call (bond (&AudioOutput::doSetGain, this, juce::Decibels::decibelsToGain(gainDb)));
 }
 
 void AudioOutput::setTempo (float tempo)
@@ -92,9 +92,9 @@ void AudioOutput::setTempo (float tempo)
   m_queue.call (bond (&AudioOutput::doSetTempo, this, tempo));
 }
 
-void AudioOutput::setSource (AudioSource* source)
+void AudioOutput::setSource (juce::AudioSource* source)
 {
-  ResamplingAudioSource* resampler = new ResamplingAudioSource (source, true);
+    juce::ResamplingAudioSource* resampler = new juce::ResamplingAudioSource (source, true);
   m_queue.call (bond (&AudioOutput::doSetSource, this, resampler));
 }
 
@@ -137,7 +137,7 @@ void AudioOutput::doSetTempo (float tempo)
   }
 }
 
-void AudioOutput::doSetSource (ResamplingAudioSource* source)
+void AudioOutput::doSetSource (juce::ResamplingAudioSource* source)
 {
   m_resampler = source;
   m_resampler->setResamplingRatio (m_tempo);
@@ -161,12 +161,12 @@ void AudioOutput::doResetFilter ()
   m_filteringAudioSource->reset();
 }
 
-AudioDeviceManager& AudioOutput::getAudioDeviceManager()
+juce::AudioDeviceManager& AudioOutput::getAudioDeviceManager()
 {
   return *m_audioDeviceManager;
 }
 
-void AudioOutput::audioDeviceAboutToStart (AudioIODevice* device)
+void AudioOutput::audioDeviceAboutToStart (juce::AudioIODevice* device)
 {
   m_queue.open ();
   m_device = device;
@@ -183,8 +183,8 @@ void AudioOutput::audioDeviceIOCallback (const float** inputChannelData,
 {
   m_queue.process();
 
-  AudioSampleBuffer buffer (outputChannelData, numOutputChannels, numSamples);
-  AudioSourceChannelInfo info;
+    juce::AudioSampleBuffer buffer (outputChannelData, numOutputChannels, numSamples);
+    juce::AudioSourceChannelInfo info;
 
   info.buffer = &buffer;
 
@@ -198,9 +198,9 @@ void AudioOutput::audioDeviceIOCallback (const float** inputChannelData,
     {
       // smallest step sounds best but uses the most CPU
       const int step = 1; // increase to reduce CPU usage
-      int amount = jmin (step, info.numSamples);
+      int amount = juce::jmin (step, info.numSamples);
 
-      AudioSourceChannelInfo b;
+        juce::AudioSourceChannelInfo b;
       b.buffer = &buffer;
       b.startSample = info.startSample;
       b.numSamples = amount;

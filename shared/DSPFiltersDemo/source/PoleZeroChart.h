@@ -47,9 +47,9 @@ class PoleZeroChart : public FilterChart
 public:
   PoleZeroChart (FilterListeners& listeners);
 
-  const String getName () const;
+  const juce::String getName () const;
 
-	void paintContents (Graphics& g);
+	void paintContents (juce::Graphics& g);
 
 private:
   void clear ();

@@ -40,7 +40,7 @@ THE SOFTWARE.
 #include "AudioOutput.h"
 #include "MainWindow.h"
 
-class MainApp : public JUCEApplication
+class MainApp : public juce::JUCEApplication
 {
 public:
   enum CommandIDs
@@ -53,17 +53,17 @@ public:
   MainApp();
   ~MainApp();
 
-  void initialise (const String& commandLine);
+  void initialise (const juce::String& commandLine);
   void shutdown ();
-  const String getApplicationName ();
-  const String getApplicationVersion ();
+  const juce::String getApplicationName ();
+  const juce::String getApplicationVersion ();
   bool moreThanOneInstanceAllowed ();
 
-  void getAllCommands (Array <CommandID>& commands);
-  void getCommandInfo (CommandID commandID, ApplicationCommandInfo& result);
+  void getAllCommands (juce::Array <juce::CommandID>& commands);
+  void getCommandInfo (juce::CommandID commandID, juce::ApplicationCommandInfo& result);
   bool perform (const InvocationInfo& info);
 
-  ApplicationCommandManager* getCommandManager() { return m_commandManager; }
+    juce::ApplicationCommandManager* getCommandManager() { return m_commandManager; }
   AudioOutput& getAudioOutput () { return *m_audioOutput; }
 
   static MainApp& getInstance() { return *s_app; }
@@ -71,9 +71,9 @@ public:
 private:
   static MainApp* s_app;
 
-  ScopedPointer <ApplicationCommandManager> m_commandManager;
-  ScopedPointer <AudioOutput> m_audioOutput;
-  ScopedPointer <MainWindow> m_mainWindow;
+    juce::ScopedPointer <juce::ApplicationCommandManager> m_commandManager;
+    juce::ScopedPointer <AudioOutput> m_audioOutput;
+    juce::ScopedPointer <MainWindow> m_mainWindow;
 };
 
 #endif

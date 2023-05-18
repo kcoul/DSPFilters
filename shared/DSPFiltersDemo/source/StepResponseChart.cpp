@@ -44,24 +44,24 @@ StepResponseChart::StepResponseChart (FilterListeners& listeners)
 {
 }
 
-const String StepResponseChart::getName () const
+const juce::String StepResponseChart::getName () const
 {
   return "Impulse Response";
 }
 
 int StepResponseChart::yToScreen (float y)
 {
-  AffineTransform t = calcTransform();
-  Point<float> p (0, y);
+    juce::AffineTransform t = calcTransform();
+    juce::Point<float> p (0, y);
   return int(p.transformedBy (t).getY());
 }
 
-void StepResponseChart::paintContents (Graphics& g)
+void StepResponseChart::paintContents (juce::Graphics& g)
 {
-  AffineTransform t = calcTransform();
+    juce::AffineTransform t = calcTransform();
 
-  g.setColour (Colours::blue);
-  g.strokePath (m_path, 1, t);
+  g.setColour (juce::Colours::blue);
+  g.strokePath (m_path, juce::PathStrokeType(1), t);
 }
 
 /*
@@ -80,8 +80,8 @@ void StepResponseChart::update ()
   {
     m_filter->reset ();
 
-    const Rectangle<int> bounds = getLocalBounds ();
-    const Rectangle<int> r = bounds.reduced (4, 4);
+    const juce::Rectangle<int> bounds = getLocalBounds ();
+    const juce::Rectangle<int> r = bounds.reduced (4, 4);
 
     //int numSamples = r.getWidth ();
     int numSamples = 2048;
@@ -113,7 +113,7 @@ void StepResponseChart::update ()
           break;
       }
     }
-    numSamples = jmin (numSamples, int (1.2 * n));
+    numSamples = juce::jmin (numSamples, int (1.2 * n));
 
     m_isDefined = true;
     for (int xi = 0; xi < r.getWidth()-1; ++xi )
@@ -133,7 +133,7 @@ void StepResponseChart::update ()
         else
           m_path.lineTo (x, y);
 
-        m_ymax = jmax (float(fabs(y)), float(m_ymax));
+        m_ymax = juce::jmax (float(fabs(y)), float(m_ymax));
       }
       else
       {
@@ -152,15 +152,15 @@ void StepResponseChart::update ()
   repaint();
 }
 
-AffineTransform StepResponseChart::calcTransform ()
+juce::AffineTransform StepResponseChart::calcTransform ()
 {
-  const Rectangle<int> bounds = getLocalBounds ();
-  const Rectangle<int> r = bounds.reduced (4, 4);
+  const juce::Rectangle<int> bounds = getLocalBounds ();
+  const juce::Rectangle<int> r = bounds.reduced (4, 4);
 
-  AffineTransform t;
+    juce::AffineTransform t;
 
   // scale x from 0..1 to 0..getWidth(), flip vertical, scale
-  t = AffineTransform::scale (float(r.getWidth()), -1.f / m_ymax);
+  t = juce::AffineTransform::scale (float(r.getWidth()), -1.f / m_ymax);
 
   // scale y to fit bounds
   t = t.scaled (1.f, r.getHeight () / 2.1f);

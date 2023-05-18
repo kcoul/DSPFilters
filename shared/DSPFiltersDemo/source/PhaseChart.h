@@ -53,19 +53,19 @@ public:
 
   PhaseChart (FilterListeners& listeners);
 
-  const String getName () const;
+  const juce::String getName () const;
 
   int yToScreen (float y);
 
-  void paintContents (Graphics& g);
+  void paintContents (juce::Graphics& g);
 
 private:
   void update ();
-  bool drawPhaseLine (Graphics& g, int degrees, bool drawLabel = true);
-  AffineTransform calcTransform ();
+  bool drawPhaseLine (juce::Graphics& g, int degrees, bool drawLabel = true);
+    juce::AffineTransform calcTransform ();
 
 private:
-  Path m_path;
+    juce::Path m_path;
 };
 
 #endif

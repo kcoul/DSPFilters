@@ -43,31 +43,31 @@ PhaseChart::PhaseChart (FilterListeners& listeners)
 {
 }
 
-const String PhaseChart::getName () const
+const juce::String PhaseChart::getName () const
 {
   return "Phase (deg)";
 }
 
 int PhaseChart::yToScreen (float y)
 {
-  AffineTransform t = calcTransform();
-  Point<float> p (0, y);
+    juce::AffineTransform t = calcTransform();
+    juce::Point<float> p (0, y);
   return int(p.transformedBy (t).getY());
 }
 
-void PhaseChart::paintContents (Graphics& g)
+void PhaseChart::paintContents (juce::Graphics& g)
 {
-  AffineTransform t = calcTransform();
+    juce::AffineTransform t = calcTransform();
 
-  g.setColour (Colours::black);
+  g.setColour (juce::Colours::black);
   drawPhaseLine (g, 0, false);
 
   g.setColour (m_cAxis);
   drawPhaseLine (g, 90);
   drawPhaseLine (g, -90);
 
-  g.setColour (Colours::blue);
-  g.strokePath (m_path, 1, t);
+  g.setColour (juce::Colours::blue);
+  g.strokePath (m_path, juce::PathStrokeType(1), t);
 }
 
 /*
@@ -85,8 +85,8 @@ void PhaseChart::update ()
   {
     m_isDefined = true;
 
-    const Rectangle<int> bounds = getLocalBounds ();
-    const Rectangle<int> r = bounds.reduced (4, 4);
+    const juce::Rectangle<int> bounds = getLocalBounds ();
+    const juce::Rectangle<int> r = bounds.reduced (4, 4);
 
     for (int xi = 0; xi < r.getWidth(); ++xi )
     {
@@ -116,12 +116,12 @@ void PhaseChart::update ()
   repaint();
 }
 
-bool PhaseChart::drawPhaseLine (Graphics& g, int degrees, bool drawLabel)
+bool PhaseChart::drawPhaseLine (juce::Graphics& g, int degrees, bool drawLabel)
 {
   bool onScreen = true;
 
-  const Rectangle<int> bounds = getLocalBounds ();
-  const Rectangle<int> r = bounds;
+  const juce::Rectangle<int> bounds = getLocalBounds ();
+  const juce::Rectangle<int> r = bounds;
   const int y = yToScreen (float(degrees));
 
   if (y >= r.getY() && y < r.getBottom())
@@ -131,9 +131,9 @@ bool PhaseChart::drawPhaseLine (Graphics& g, int degrees, bool drawLabel)
     if (drawLabel)
     {
       if (degrees >= 0)
-        drawText (g, Point<int> (r.getX()+6, y-2), String(degrees));
+        drawText (g, juce::Point<int> (r.getX()+6, y-2), juce::String(degrees));
       else
-        drawText (g, Point<int> (r.getX()+6, y+2), String(degrees), Justification::topLeft);
+        drawText (g, juce::Point<int> (r.getX()+6, y+2), juce::String(degrees), juce::Justification::topLeft);
     }
   }
   else
@@ -144,15 +144,15 @@ bool PhaseChart::drawPhaseLine (Graphics& g, int degrees, bool drawLabel)
   return onScreen;
 }
 
-AffineTransform PhaseChart::calcTransform ()
+juce::AffineTransform PhaseChart::calcTransform ()
 {
-  const Rectangle<int> bounds = getLocalBounds ();
-  const Rectangle<int> r = bounds.reduced (4, 4);
+  const juce::Rectangle<int> bounds = getLocalBounds ();
+  const juce::Rectangle<int> r = bounds.reduced (4, 4);
 
-  AffineTransform t;
+    juce::AffineTransform t;
 
   // scale x from 0..1 to 0..getWidth(), and flip vertical
-  t = AffineTransform::scale (float(r.getWidth()), -1.f);
+  t = juce::AffineTransform::scale (float(r.getWidth()), -1.f);
 
   // move y down so 120 is at the top
   t = t.translated (0.f, 120.f);

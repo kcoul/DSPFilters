@@ -109,7 +109,7 @@ private:
 
 //------------------------------------------------------------------------------
 
-class NoiseAudioSource : public AudioSource
+class NoiseAudioSource : public juce::AudioSource
 {
 public:
   explicit NoiseAudioSource (bool pink = false);
@@ -120,14 +120,14 @@ public:
 
   void releaseResources();
 
-  void getNextAudioBlock (const AudioSourceChannelInfo& bufferToFill);
+  void getNextAudioBlock (const juce::AudioSourceChannelInfo& bufferToFill);
 
   void white_noise (int numSamples, float* dest);
   void pink_noise (int numSamples, float* dest);
   
 private:
   bool m_pink;
-  Random m_random;
+    juce::Random m_random;
   pink_noise_filter m_filter;
 };
 

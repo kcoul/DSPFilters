@@ -36,10 +36,10 @@ THE SOFTWARE.
 #include "Common.h"
 #include "ResamplingReader.h"
 
-ResamplingReader::ResamplingReader (AudioFormatReader* reader)
+ResamplingReader::ResamplingReader (juce::AudioFormatReader* reader)
   : m_reader (reader)
-  , m_source (new AudioFormatReaderSource (m_reader, false))
-  , m_resampler (new ResamplingAudioSource (m_source, false))
+  , m_source (new juce::AudioFormatReaderSource (m_reader, false))
+  , m_resampler (new juce::ResamplingAudioSource (m_source, false))
 {
   m_source->setLooping (true);
 }
@@ -60,7 +60,7 @@ void ResamplingReader::releaseResources()
   m_resampler->releaseResources();
 }
 
-void ResamplingReader::getNextAudioBlock (const AudioSourceChannelInfo& bufferToFill)
+void ResamplingReader::getNextAudioBlock (const juce::AudioSourceChannelInfo& bufferToFill)
 {
   m_resampler->getNextAudioBlock (bufferToFill);
 }

@@ -41,7 +41,7 @@ SettingsPanel::SettingsPanel ()
 {
   setSize (800, 600);
 
-  Component* c = new AudioDeviceSelectorComponent(
+  Component* c = new juce::AudioDeviceSelectorComponent(
     MainApp::getInstance().getAudioOutput().getAudioDeviceManager(),
     0, 2,
     2, 6,

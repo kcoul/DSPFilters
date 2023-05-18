@@ -40,7 +40,7 @@ THE SOFTWARE.
 class FilterParamSliderGroupModel : public SliderGroup::Model
 {
 public:
-  FilterParamSliderGroupModel (ListenerList<FilterListener>& listeners,
+  FilterParamSliderGroupModel (juce::ListenerList<FilterListener>& listeners,
                                Dsp::Filter* filter,
                                int paramIndex)
     : m_listeners (listeners)
@@ -54,7 +54,7 @@ public:
   {
   }
 
-  const String getName () const
+  const juce::String getName () const
   {
     return m_paramInfo.getLabel ();
   }
@@ -70,10 +70,10 @@ public:
     m_listeners.call (&FilterListener::onFilterParameters);
   }
 
-  const String getNativeValueAsText () const
+  const juce::String getNativeValueAsText () const
   {
     const Dsp::ParamInfo paramInfo = m_filter->getParamInfo (m_paramIndex);
-    return String (paramInfo.toString (m_filter->getParam (m_paramIndex)).c_str ());
+    return juce::String (paramInfo.toString (m_filter->getParam (m_paramIndex)).c_str ());
   }
 
   void setNativeValue (double nativeValue)
@@ -81,7 +81,7 @@ public:
   }
 
 private:
-  ListenerList<FilterListener>& m_listeners;
+    juce::ListenerList<FilterListener>& m_listeners;
   Dsp::Filter* m_filter;
   int m_paramIndex;
   const Dsp::ParamInfo m_paramInfo;
@@ -89,7 +89,7 @@ private:
 
 //------------------------------------------------------------------------------
 
-FilterControls::FilterControls (ListenerList<FilterListener>& listeners)
+FilterControls::FilterControls (juce::ListenerList<FilterListener>& listeners)
   : m_listeners (listeners)
 {
 }
@@ -99,14 +99,14 @@ FilterControls::~FilterControls ()
   clear ();
 }
 
-void FilterControls::paint (Graphics& g)
+void FilterControls::paint (juce::Graphics& g)
 {
-  const Rectangle<int> bounds = getLocalBounds();
+  const juce::Rectangle<int> bounds = getLocalBounds();
 
-  g.setColour (Colour::fromRGBA (0, 0, 0, 64));
+  g.setColour (juce::Colour::fromRGBA (0, 0, 0, 64));
   g.fillRect (bounds.reduced (1, 1));
 
-  g.setColour (Colour::fromRGBA (0, 0, 0, 128));
+  g.setColour (juce::Colour::fromRGBA (0, 0, 0, 128));
   g.drawRect (bounds, 1);
 }
 
@@ -117,7 +117,7 @@ void FilterControls::onFilterChanged (Dsp::Filter* newFilter)
 
   clear ();
 
-  const Rectangle<int> bounds = getLocalBounds();
+  const juce::Rectangle<int> bounds = getLocalBounds();
 
   const int w = 70;
   const int ygap = 0;

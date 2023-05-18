@@ -46,8 +46,8 @@ THE SOFTWARE.
  *
  */
 class SliderGroup
-  : public Component
-  , public Slider::Listener
+  : public juce::Component
+  , public juce::Slider::Listener
   , public ResizableLayout
 {
 public:
@@ -55,12 +55,12 @@ public:
   {
   public:
     virtual ~Model();
-    virtual const String getName () const = 0;
+    virtual const juce::String getName () const = 0;
     // Control value is always from 0..1
     virtual double getControlValue () const = 0;
     virtual void setControlValue (double controlValue) = 0;
     // Native value is in Model units
-    virtual const String getNativeValueAsText () const = 0;
+    virtual const juce::String getNativeValueAsText () const = 0;
     virtual void setNativeValue (double nativeValue) = 0;
   };
 
@@ -68,16 +68,16 @@ public:
   SliderGroup (Model* model);
   ~SliderGroup ();
 
-  void sliderValueChanged (Slider* ctrl);
+  void sliderValueChanged (juce::Slider* ctrl);
 
 protected:
   void updateText ();
 
 private:
-  ScopedPointer<Model> m_model;
-  ScopedPointer<Label> m_label;
-  ScopedPointer<CustomSlider> m_slider;
-  ScopedPointer<Label> m_text;
+    juce::ScopedPointer<Model> m_model;
+    juce::ScopedPointer<juce::Label> m_label;
+    juce::ScopedPointer<CustomSlider> m_slider;
+    juce::ScopedPointer<juce::Label> m_text;
 };
 
 #endif

@@ -36,7 +36,7 @@ THE SOFTWARE.
 #ifndef DSPDEMO_SETTINGSPANEL_H
 #define DSPDEMO_SETTINGSPANEL_H
 
-class SettingsPanel : public Component
+class SettingsPanel : public juce::Component
 {
 public:
   SettingsPanel ();

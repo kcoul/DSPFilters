@@ -53,20 +53,20 @@ public:
 
   GainChart (FilterListeners& listeners);
 
-  const String getName () const;
+  const juce::String getName () const;
 
   int yToScreen (float y);
 
-  void paintContents (Graphics& g);
+  void paintContents (juce::Graphics& g);
 
 private:
   void update ();
-  bool drawDbLine (Graphics& g, int db, bool drawLabel = true);
-  AffineTransform calcTransform ();
+  bool drawDbLine (juce::Graphics& g, int db, bool drawLabel = true);
+    juce::AffineTransform calcTransform ();
 
 private:
   float m_maxDb;
-  Path m_path;
+    juce::Path m_path;
 };
 
 #endif

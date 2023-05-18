@@ -43,10 +43,10 @@ THE SOFTWARE.
  * resampler that adjusts for playback versus recorded sampling rate
  *
  */
-class ResamplingReader : public AudioSource
+class ResamplingReader : public juce::AudioSource
 {
 public:
-  ResamplingReader (AudioFormatReader* reader);
+  ResamplingReader (juce::AudioFormatReader* reader);
 
   ~ResamplingReader ();
 
@@ -55,12 +55,12 @@ public:
 
   void releaseResources();
 
-  void getNextAudioBlock (const AudioSourceChannelInfo& bufferToFill);
+  void getNextAudioBlock (const juce::AudioSourceChannelInfo& bufferToFill);
 
 private:
-  ScopedPointer<AudioFormatReader> m_reader;
-  ScopedPointer<AudioFormatReaderSource> m_source;
-  ScopedPointer<ResamplingAudioSource> m_resampler;
+    juce::ScopedPointer<juce::AudioFormatReader> m_reader;
+    juce::ScopedPointer<juce::AudioFormatReaderSource> m_source;
+    juce::ScopedPointer<juce::ResamplingAudioSource> m_resampler;
 };
 
 #endif

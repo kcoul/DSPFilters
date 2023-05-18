@@ -233,15 +233,16 @@
 		2ED29FAC13FCC0F900750A4E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0410;
+				LastUpgradeCheck = 1420;
 				ORGANIZATIONNAME = "One Guy Group, Inc.";
 			};
 			buildConfigurationList = 2ED29FAF13FCC0F900750A4E /* Build configuration list for PBXProject "JuceAmalgam" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 2ED29FAA13FCC0F900750A4E;
 			productRefGroup = 2ED29FB613FCC0FA00750A4E /* Products (link your binary with these) */;
@@ -302,6 +303,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2EF3B4BF140F6646002CE947 /* SharedMacOS.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				DEAD_CODE_STRIPPING = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_NAME = JuceAmalgamMac;
 			};
 			name = Debug;
@@ -310,6 +315,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2EF3B4BF140F6646002CE947 /* SharedMacOS.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				DEAD_CODE_STRIPPING = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_NAME = JuceAmalgamMac;
 			};
 			name = Release;
@@ -318,8 +327,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2EF3B4BE140F6646002CE947 /* SharediOS.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				PRODUCT_NAME = JuceAmalgamiOS;
-				SDKROOT = iphoneos4.3;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -327,8 +338,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2EF3B4BE140F6646002CE947 /* SharediOS.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				PRODUCT_NAME = JuceAmalgamiOS;
-				SDKROOT = iphoneos4.3;
+				SDKROOT = iphoneos;
 			};
 			name = Release;
 		};
@@ -336,6 +349,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2EF3B4BD140F6646002CE947 /* SharedDebug.xcconfig */;
 			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				DEAD_CODE_STRIPPING = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"_DEBUG=1",
@@ -343,6 +359,7 @@
 					"JUCE_UNIT_TESTS=1",
 					"$(inherited)",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 			};
 			name = Debug;
 		};
@@ -350,6 +367,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2EF3B4C0140F6646002CE947 /* SharedRelease.xcconfig */;
 			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				DEAD_CODE_STRIPPING = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"NDEBUG=1",
 					"_NDEBUG=1",

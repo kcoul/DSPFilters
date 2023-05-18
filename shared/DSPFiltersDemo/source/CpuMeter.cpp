@@ -36,16 +36,16 @@ THE SOFTWARE.
 #include "Common.h"
 #include "CpuMeter.h"
 
-CpuMeter::CpuMeter (AudioDeviceManager& audioDeviceManager)
+CpuMeter::CpuMeter (juce::AudioDeviceManager& audioDeviceManager)
 : ResizableLayout (this)
 , m_audioDeviceManager (audioDeviceManager)
 , m_value (0)
 {
   setSize (80, 18);
 
-  m_label = new Label;
-  m_label->setText ("CPU", false);
-  m_label->setBorderSize (0, 0);
+  m_label = new juce::Label;
+  m_label->setText ("CPU", juce::dontSendNotification);
+    m_label->setBorderSize ({0, 0, 0, 0});
   m_label->setSize (m_label->getFont().getStringWidth (m_label->getText()), 18);
   m_label->setTopLeftPosition (0, 0);
   addToLayout (m_label, anchorTopLeft, anchorBottomLeft);
@@ -60,29 +60,29 @@ CpuMeter::~CpuMeter()
 {
 }
 
-void CpuMeter::paint (Graphics& g)
+void CpuMeter::paint (juce::Graphics& g)
 {
-  const Rectangle<int> bounds = getLocalBounds();
-  Rectangle<int> r = bounds;
+  const juce::Rectangle<int> bounds = getLocalBounds();
+    juce::Rectangle<int> r = bounds;
   r.setLeft (m_label->getRight() + 4);
 
   // fill
-  g.setColour (Colours::white);
+  g.setColour (juce::Colours::white);
   g.fillRect (r.reduced (1, 1));
 
   // frame
-  g.setColour (Colours::black);
+  g.setColour (juce::Colours::black);
   g.drawRect (r, 1);
 
   // value
   r = r.reduced (1, 1);
-  Colour c;
+    juce::Colour c;
   if (m_value > 0.95)
-    c = Colours::red;
+    c = juce::Colours::red;
   else if (m_value > 0.85)
-    c = Colours::olivedrab.interpolatedWith (Colours::red, float(m_value - 0.85f));
+    c = juce::Colours::olivedrab.interpolatedWith (juce::Colours::red, float(m_value - 0.85f));
   else
-    c = Colours::olivedrab;
+    c = juce::Colours::olivedrab;
 
   float w = float(r.getWidth() * m_value);
   g.setColour (c);

@@ -43,31 +43,31 @@ GroupDelayChart::GroupDelayChart (FilterListeners& listeners)
 {
 }
 
-const String GroupDelayChart::getName () const
+const juce::String GroupDelayChart::getName () const
 {
   return "Group Delay (s)";
 }
 
 int GroupDelayChart::yToScreen (float y)
 {
-  AffineTransform t = calcTransform();
-  Point<float> p (0, y);
+    juce::AffineTransform t = calcTransform();
+    juce::Point<float> p (0, y);
   return int(p.transformedBy (t).getY());
 }
 
-void GroupDelayChart::paintContents (Graphics& g)
+void GroupDelayChart::paintContents (juce::Graphics& g)
 {
-  AffineTransform t = calcTransform();
+    juce::AffineTransform t = calcTransform();
 
-  g.setColour (Colours::black);
+  g.setColour (juce::Colours::black);
   drawGroupDelayLine (g, 0.f, false);
 
   g.setColour (m_cAxis);
   drawGroupDelayLine (g, 1.f);
   drawGroupDelayLine (g, -1.f);
 
-  g.setColour (Colours::blue);
-  g.strokePath (m_path, 1, t);
+  g.setColour (juce::Colours::blue);
+  g.strokePath (m_path, juce::PathStrokeType(1), t);
 }
 
 /*
@@ -85,8 +85,8 @@ void GroupDelayChart::update ()
   {
     m_isDefined = true;
 
-    const Rectangle<int> bounds = getLocalBounds ();
-    const Rectangle<int> r = bounds.reduced (4, 4);
+    const juce::Rectangle<int> bounds = getLocalBounds ();
+    const juce::Rectangle<int> r = bounds.reduced (4, 4);
 
     // start from 1 to prevent divide by 0
     for (int xi = 1; xi < r.getWidth(); ++xi )
@@ -117,12 +117,12 @@ void GroupDelayChart::update ()
   repaint();
 }
 
-bool GroupDelayChart::drawGroupDelayLine (Graphics& g, float seconds, bool drawLabel)
+bool GroupDelayChart::drawGroupDelayLine (juce::Graphics& g, float seconds, bool drawLabel)
 {
   bool onScreen = true;
 
-  const Rectangle<int> bounds = getLocalBounds ();
-  const Rectangle<int> r = bounds;
+  const juce::Rectangle<int> bounds = getLocalBounds ();
+  const juce::Rectangle<int> r = bounds;
   const int y = yToScreen (seconds);
 
   if (y >= r.getY() && y < r.getBottom())
@@ -132,9 +132,9 @@ bool GroupDelayChart::drawGroupDelayLine (Graphics& g, float seconds, bool drawL
     if (drawLabel)
     {
       if (seconds >= 0)
-        drawText (g, Point<int> (r.getX()+6, y-2), String(seconds));
+        drawText (g, juce::Point<int> (r.getX()+6, y-2), juce::String(seconds));
       else
-        drawText (g, Point<int> (r.getX()+6, y+2), String(seconds), Justification::topLeft);
+        drawText (g, juce::Point<int> (r.getX()+6, y+2), juce::String(seconds), juce::Justification::topLeft);
     }
   }
   else
@@ -145,15 +145,15 @@ bool GroupDelayChart::drawGroupDelayLine (Graphics& g, float seconds, bool drawL
   return onScreen;
 }
 
-AffineTransform GroupDelayChart::calcTransform ()
+juce::AffineTransform GroupDelayChart::calcTransform ()
 {
-  const Rectangle<int> bounds = getLocalBounds ();
-  const Rectangle<int> r = bounds.reduced (4, 4);
+  const juce::Rectangle<int> bounds = getLocalBounds ();
+  const juce::Rectangle<int> r = bounds.reduced (4, 4);
 
-  AffineTransform t;
+    juce::AffineTransform t;
 
   // scale x from 0..1 to 0..getWidth(), and flip vertical
-  t = AffineTransform::scale (float(r.getWidth()), -1.f);
+  t = juce::AffineTransform::scale (float(r.getWidth()), -1.f);
 
   // scale y from -h..h to getHeight()/2
   const float h =3;

@@ -47,14 +47,14 @@ THE SOFTWARE.
  *
  */
 class FilterControls
-  : public Component
+  : public juce::Component
   , public FilterListener
 {
 public:
-  FilterControls (ListenerList<FilterListener>& listeners);
+  FilterControls (juce::ListenerList<FilterListener>& listeners);
   ~FilterControls ();
 
-  void paint (Graphics& g);
+  void paint (juce::Graphics& g);
 
   void onFilterChanged (Dsp::Filter* newFilter);
 
@@ -72,8 +72,8 @@ private:
     SliderGroup* group;
   };
 
-  ListenerList<FilterListener>& m_listeners;
-  Array<Item> m_items;
+    juce::ListenerList<FilterListener>& m_listeners;
+    juce::Array<Item> m_items;
   Dsp::Filter* m_filter;
 };
 

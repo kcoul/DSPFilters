@@ -36,18 +36,18 @@ THE SOFTWARE.
 #include "Common.h"
 #include "ResizableLayout.h"
 
-const Point<int> ResizableLayout::anchorNone			  ( -1, -1 );
-const Point<int> ResizableLayout::anchorTopLeft		  ( 0, 0 );
-const Point<int> ResizableLayout::anchorTopCenter		( anchorUnit/2, 0 );
-const Point<int> ResizableLayout::anchorTopRight		( anchorUnit, 0 );
-const Point<int> ResizableLayout::anchorMidLeft		  ( 0, anchorUnit/2 );
-const Point<int> ResizableLayout::anchorMidCenter		( anchorUnit/2, anchorUnit/2 );
-const Point<int> ResizableLayout::anchorMidRight		( anchorUnit, anchorUnit/2 );
-const Point<int> ResizableLayout::anchorBottomLeft	( 0, anchorUnit );
-const Point<int> ResizableLayout::anchorBottomCenter( anchorUnit/2, anchorUnit );
-const Point<int> ResizableLayout::anchorBottomRight	( anchorUnit, anchorUnit );
+const juce::Point<int> ResizableLayout::anchorNone			  ( -1, -1 );
+const juce::Point<int> ResizableLayout::anchorTopLeft		  ( 0, 0 );
+const juce::Point<int> ResizableLayout::anchorTopCenter		( anchorUnit/2, 0 );
+const juce::Point<int> ResizableLayout::anchorTopRight		( anchorUnit, 0 );
+const juce::Point<int> ResizableLayout::anchorMidLeft		  ( 0, anchorUnit/2 );
+const juce::Point<int> ResizableLayout::anchorMidCenter		( anchorUnit/2, anchorUnit/2 );
+const juce::Point<int> ResizableLayout::anchorMidRight		( anchorUnit, anchorUnit/2 );
+const juce::Point<int> ResizableLayout::anchorBottomLeft	( 0, anchorUnit );
+const juce::Point<int> ResizableLayout::anchorBottomCenter( anchorUnit/2, anchorUnit );
+const juce::Point<int> ResizableLayout::anchorBottomRight	( anchorUnit, anchorUnit );
 
-ResizableLayout::Anchor::Anchor (Component* component_)
+ResizableLayout::Anchor::Anchor (juce::Component* component_)
 : component (component_)
 , child (dynamic_cast<ResizableChild*>(component_))
 {
@@ -69,7 +69,7 @@ bool ResizableLayout::Anchor::operator< (const Anchor& rhs) const
     return component < rhs.component;
 }
 
-ResizableLayout::State::State (Component* component_)
+ResizableLayout::State::State (juce::Component* component_)
 : component (component_)
 {
   jassert (component);
@@ -99,7 +99,7 @@ bool ResizableLayout::State::operator< (const State& rhs) const
 
 //------------------------------------------------------------------------------
 
-ResizableLayout::ResizableLayout (Component* owner)
+ResizableLayout::ResizableLayout (juce::Component* owner)
 : m_owner (owner)
 {
   m_bFirstTime = true;
@@ -113,9 +113,9 @@ ResizableLayout::~ResizableLayout()
 {
 }
 
-void ResizableLayout::addToLayout (Component* component,
-                                   const Point<int> &topLeft,
-                                   const Point<int> &bottomRight,
+void ResizableLayout::addToLayout (juce::Component* component,
+                                   const juce::Point<int> &topLeft,
+                                   const juce::Point<int> &bottomRight,
                                    Style style )
 {
 	jassert (topLeft != anchorNone);
@@ -133,7 +133,7 @@ void ResizableLayout::addToLayout (Component* component,
   component->addComponentListener (this);
 }
 
-void ResizableLayout::removeFromLayout (Component* component)
+void ResizableLayout::removeFromLayout (juce::Component* component)
 {
   m_anchors.removeValue (component);
   m_states.removeValue (component);
@@ -160,7 +160,7 @@ void ResizableLayout::updateLayout ()
 		addStateFor (m_anchors[i]);
 }
 
-void ResizableLayout::updateLayoutFor (Component *component)
+void ResizableLayout::updateLayoutFor (juce::Component *component)
 {
   m_states.removeValue (component);
   addStateFor (m_anchors[m_anchors.indexOf (component)]);
@@ -244,7 +244,7 @@ void ResizableLayout::recalculateLayout()
 	}
 }
 
-void ResizableLayout::componentMovedOrResized (Component& component,
+void ResizableLayout::componentMovedOrResized (juce::Component& component,
                                                bool wasMoved,
                                                bool wasResized)
 {
@@ -261,7 +261,7 @@ void ResizableLayout::componentMovedOrResized (Component& component,
   }
 }
 
-void ResizableLayout::componentBeingDeleted (Component& component)
+void ResizableLayout::componentBeingDeleted (juce::Component& component)
 {
   if (&component != m_owner)
   {
@@ -270,9 +270,9 @@ void ResizableLayout::componentBeingDeleted (Component& component)
   }
 }
 
-Rectangle<int> ResizableLayout::calcBoundsOfChildren (Component* parent)
+juce::Rectangle<int> ResizableLayout::calcBoundsOfChildren (juce::Component* parent)
 {
-  Rectangle<int> r;
+    juce::Rectangle<int> r;
 
   for (int i=0; i<parent->getNumChildComponents(); i++)
     r = r.getUnion (parent->getChildComponent(i)->getBounds());
@@ -324,14 +324,14 @@ void ResizableLayout::resizeStart()
         if (d!=0)
         {
           m = ( xmin1 + state.margin.left - state.margin.right ) * anchorUnit / d;
-          xmin0 = jmax (xmin0, m);
+          xmin0 = juce::jmax (xmin0, m);
         }
 
         d = anchor.bottomRight.getY() - anchor.topLeft.getY();
         if (d!=0)
         {
           m = ( ymin1 + state.margin.top - state.margin.bottom ) * anchorUnit / d;
-          ymin0 = jmax (ymin0, m);
+          ymin0 = juce::jmax (ymin0, m);
         }
       }
     }
@@ -362,14 +362,14 @@ void TopLevelResizableLayout::Constrainer::resizeStart ()
 
 //------------------------------------------------------------------------------
 
-TopLevelResizableLayout::TopLevelResizableLayout (Component* owner)
+TopLevelResizableLayout::TopLevelResizableLayout (juce::Component* owner)
   : ResizableLayout (owner)
   , m_constrainer (this)
 {
 
 }
 
-void TopLevelResizableLayout::setAsConstrainerFor(ResizableWindow *window)
+void TopLevelResizableLayout::setAsConstrainerFor(juce::ResizableWindow *window)
 {
   window->setConstrainer (&m_constrainer);
 }

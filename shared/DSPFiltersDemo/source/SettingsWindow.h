@@ -38,7 +38,7 @@ THE SOFTWARE.
 
 #include "Common.h"
 
-class SettingsWindow : public DialogWindow
+class SettingsWindow : public juce::DialogWindow
 {
 public:
   SettingsWindow ();

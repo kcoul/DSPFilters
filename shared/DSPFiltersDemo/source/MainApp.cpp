@@ -51,11 +51,11 @@ MainApp::~MainApp()
   s_app = 0;
 }
 
-void MainApp::initialise (const String& commandLine)
+void MainApp::initialise (const juce::String& commandLine)
 {
   //LookAndFeel::setDefaultLookAndFeel( &m_lookAndFeel );
 
-  m_commandManager = new ApplicationCommandManager;
+  m_commandManager = new juce::ApplicationCommandManager;
   m_commandManager->registerAllCommandsForTarget (this);
 
   m_audioOutput = new AudioOutput;
@@ -70,12 +70,12 @@ void MainApp::shutdown()
   m_audioOutput = 0;
 }
 
-const String MainApp::getApplicationName()
+const juce::String MainApp::getApplicationName()
 {
   return TRANS("Dsp Filters Demo");
 }
 
-const String MainApp::getApplicationVersion()
+const juce::String MainApp::getApplicationVersion()
 {
   return TRANS("1.1");
 }
@@ -85,30 +85,30 @@ bool MainApp::moreThanOneInstanceAllowed()
   return true;
 }
 
-void MainApp::getAllCommands (Array <CommandID>& commands)
+void MainApp::getAllCommands (juce::Array <juce::CommandID>& commands)
 {
   JUCEApplication::getAllCommands (commands);
 
-  const CommandID ids[] = {
+  const juce::CommandID ids[] = {
     cmdSettings,
     cmdAbout
   };
 
-  commands.addArray (ids, numElementsInArray (ids));
+  commands.addArray (ids, juce::numElementsInArray (ids));
 }
 
-void MainApp::getCommandInfo (CommandID commandID, ApplicationCommandInfo& result)
+void MainApp::getCommandInfo (juce::CommandID commandID, juce::ApplicationCommandInfo& result)
 {
   switch (commandID)
   {
   case cmdAbout:
     result.setInfo (TRANS("About Dsp Demo"),
-                    TRANS("Displays the About box"), String::empty, 0);
+                    TRANS("Displays the About box"), juce::String(), 0);
     break;
 
   case cmdSettings:
     result.setInfo (TRANS("Settings..."),
-                    TRANS("Adjust audio settings"), String::empty, 0);
+                    TRANS("Adjust audio settings"), juce::String(), 0);
     break;
 
   default:
@@ -130,7 +130,7 @@ bool MainApp::perform (const InvocationInfo& info)
 
   case cmdAbout:
     {
-      AlertWindow::showMessageBox (AlertWindow::InfoIcon,
+        juce::AlertWindow::showMessageBoxAsync (juce::AlertWindow::InfoIcon,
         TRANS("About"),
         TRANS(
           "DSP Filters Demo\n"

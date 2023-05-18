@@ -38,7 +38,7 @@ THE SOFTWARE.
 
 #include "Common.h"
 
-class MainWindow : public DocumentWindow
+class MainWindow : public juce::DocumentWindow
 {
 public:
   MainWindow ();

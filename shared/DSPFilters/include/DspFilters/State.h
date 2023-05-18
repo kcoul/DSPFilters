@@ -85,7 +85,7 @@ class DirectFormI
 {
 public:
   typedef FP FPType;
-  static constexpr bool HasSimd = Simd;
+  static /*constexpr*/ const bool HasSimd = Simd;
 
   DirectFormI ()
   {
@@ -201,7 +201,7 @@ class DirectFormII
 {
 public:
     typedef FP FPType;
-    static constexpr bool HasSimd = false;
+    static /*constexpr*/ const bool HasSimd = false;
     DirectFormII ()
   {
     reset ();
@@ -248,7 +248,7 @@ class TransposedDirectFormI
 {
 public:
     typedef FP FPType;
-    static constexpr bool HasSimd = false;
+    static /*constexpr*/ const bool HasSimd = false;
     TransposedDirectFormI ()
   {
     reset ();
@@ -307,7 +307,7 @@ class TransposedDirectFormII
 {
 public:
   typedef FP FPType;
-  static constexpr bool HasSimd = false;
+  static /*constexpr*/ const bool HasSimd = false;
   TransposedDirectFormII ()
   {
     reset ();

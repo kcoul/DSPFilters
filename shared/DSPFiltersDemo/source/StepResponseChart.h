@@ -47,19 +47,19 @@ class StepResponseChart : public FilterChart
 public:
   StepResponseChart (FilterListeners& listeners);
 
-  const String getName () const;
+  const juce::String getName () const;
 
   int yToScreen (float y);
 
-  void paintContents (Graphics& g);
+  void paintContents (juce::Graphics& g);
 
 private:
   void update ();
-  AffineTransform calcTransform ();
+    juce::AffineTransform calcTransform ();
 
 private:
   bool m_isDefined;
-  Path m_path;
+    juce::Path m_path;
   float m_ymax;
 };
 

@@ -40,7 +40,7 @@ THE SOFTWARE.
 
 MainWindow::MainWindow () 
   : DocumentWindow (TRANS("DSP Filters"),
-                    Colours::lightgrey, 
+                    juce::Colours::lightgrey,
                     DocumentWindow::allButtons,
                     true)
 {
@@ -62,5 +62,5 @@ MainWindow::~MainWindow()
 
 void MainWindow::closeButtonPressed()
 {
-  JUCEApplication::quit();
+    juce::JUCEApplication::quit();
 }

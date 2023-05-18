@@ -68,7 +68,7 @@ MainPanel::MainPanel()
   x = x0;
 
   {
-    ComboBox* c = new ComboBox;
+      juce::ComboBox* c = new juce::ComboBox;
     c->setBounds (x, y, 160, 24);
     addToLayout (c, anchorTopLeft);
     addAndMakeVisible (c);
@@ -80,7 +80,7 @@ MainPanel::MainPanel()
   x = this->getChildComponent (this->getNumChildComponents() - 1)->getBounds().getRight() + gap;
 
   {
-    ComboBox* c = new ComboBox;
+      juce::ComboBox* c = new juce::ComboBox;
     c->setBounds (x, y, 120, 24);
     addToLayout (c, anchorTopLeft);
     addAndMakeVisible (c);
@@ -92,7 +92,7 @@ MainPanel::MainPanel()
   x = this->getChildComponent (this->getNumChildComponents() - 1)->getBounds().getRight() + gap;
 
   {
-    ComboBox* c = new ComboBox;
+      juce::ComboBox* c = new juce::ComboBox;
     c->setBounds (x, y, 120, 24);
     c->addItem ("Amen Break", 1);
     c->addItem ("Sine Wave (440Hz)", 2);
@@ -121,10 +121,10 @@ MainPanel::MainPanel()
   const int hfc = 80;
 
   {
-    Slider* c = new Slider;
+      juce::Slider* c = new juce::Slider;
     c->setBounds (x - 20, y, 20, hfc + gap + 24);
-    c->setSliderStyle (Slider::LinearVertical);
-    c->setTextBoxStyle (Slider::NoTextBox, true, 0, 0);
+    c->setSliderStyle (juce::Slider::LinearVertical);
+    c->setTextBoxStyle (juce::Slider::NoTextBox, true, 0, 0);
     c->setRange (-40, 12);
     c->setValue (0);
     addAndMakeVisible (c);
@@ -137,10 +137,10 @@ MainPanel::MainPanel()
   x = this->getChildComponent (this->getNumChildComponents() - 1)->getBounds().getX() - gap;
  
   {
-    Slider* c = new Slider;
+      juce::Slider* c = new juce::Slider;
     c->setBounds (x - 20, y, 20, hfc + gap + 24);
-    c->setSliderStyle (Slider::LinearVertical);
-    c->setTextBoxStyle (Slider::NoTextBox, true, 0, 0);
+    c->setSliderStyle (juce::Slider::LinearVertical);
+    c->setTextBoxStyle (juce::Slider::NoTextBox, true, 0, 0);
     c->setRange (-2, 2);
     c->setValue (0);
     addAndMakeVisible (c);
@@ -165,7 +165,7 @@ MainPanel::MainPanel()
   x = x0;
 
   {
-    ComboBox* c = new ComboBox;
+      juce::ComboBox* c = new juce::ComboBox;
     c->setBounds (x, y, 120, 24);
     c->addItem ("Direct Form I", 1);
     c->addItem ("Direct Form II", 2);
@@ -183,7 +183,7 @@ MainPanel::MainPanel()
   x = this->getChildComponent (this->getNumChildComponents() - 1)->getBounds().getRight() + gap;
 
   {
-    ComboBox* c = new ComboBox;
+      juce::ComboBox* c = new juce::ComboBox;
     c->setBounds (x, y, 200, 24);
     c->addItem ("Parameter Smoothing", 1);
     c->addItem ("Pole/Zero Interpolation", 2); c->setItemEnabled (2, false);
@@ -199,9 +199,9 @@ MainPanel::MainPanel()
   x = this->getChildComponent (this->getNumChildComponents() - 1)->getBounds().getRight() + gap;
 
   {
-    m_resetButton = new TextButton ("Reset");
+    m_resetButton = new juce::TextButton ("Reset");
     m_resetButton->setBounds (x1 - 60, y, 60, 24);
-    m_resetButton->setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnRight);
+    m_resetButton->setConnectedEdges (juce::Button::ConnectedOnLeft | juce::Button::ConnectedOnRight);
     addToLayout (m_resetButton, anchorTopRight);
     addAndMakeVisible (m_resetButton);
     m_resetButton->addListener (this);
@@ -210,7 +210,7 @@ MainPanel::MainPanel()
   y = this->getChildComponent (this->getNumChildComponents()-1)->getBounds().getBottom() + gap;
   x = x0;
 
-  const Rectangle<int> r (x, y, w - (x + gap), h - (y + gap));
+  const juce::Rectangle<int> r (x, y, w - (x + gap), h - (y + gap));
   createCharts (r);
 
 	setSize (w, h);
@@ -237,7 +237,7 @@ Resp   Phase  Poles
 +---------+   Step
 
 */
-void MainPanel::createCharts (const Rectangle<int>& r)
+void MainPanel::createCharts (const juce::Rectangle<int>& r)
 {
   const int gap = 4;
   const int w = (r.getWidth()  - (2 * gap)) / 3;
@@ -248,47 +248,47 @@ void MainPanel::createCharts (const Rectangle<int>& r)
   {
     GainChart* c = new GainChart (m_listeners);
     c->setBounds (r.getX(), r.getY(), w, h);
-    addToLayout (c, Point<int>(0, 0), Point<int>(33, 33));
+    addToLayout (c, juce::Point<int>(0, 0), juce::Point<int>(33, 33));
     addAndMakeVisible (c);
   }
 
   {
     PhaseChart* c = new PhaseChart (m_listeners);
     c->setBounds (r.getX() + w + gap, r.getY(), w, h);
-    addToLayout (c, Point<int>(33, 0), Point<int>(66, 33));
+    addToLayout (c, juce::Point<int>(33, 0), juce::Point<int>(66, 33));
     addAndMakeVisible (c);
   }
 
   {
     PoleZeroChart* c = new PoleZeroChart (m_listeners);
     c->setBounds (r.getX() + w + gap + w + gap, r.getY(), w, h);
-    addToLayout (c, Point<int>(66, 0), Point<int>(100, 33));
+    addToLayout (c, juce::Point<int>(66, 0), juce::Point<int>(100, 33));
     addAndMakeVisible (c);
   }
 
   {
     BrickWallChart* c = new BrickWallChart (m_listeners);
     c->setBounds (r.getX(), r.getY() + h + gap, w2, h2);
-    addToLayout (c, Point<int>(0, 33), Point<int>(66, 100));
+    addToLayout (c, juce::Point<int>(0, 33), juce::Point<int>(66, 100));
     addAndMakeVisible (c);
   }
 
   {
     GroupDelayChart* c = new GroupDelayChart (m_listeners);
     c->setBounds (r.getX() + w + gap + w + gap, r.getY() + h + gap, w, h);
-    addToLayout (c, Point<int>(66, 33), Point<int>(100, 66));
+    addToLayout (c, juce::Point<int>(66, 33), juce::Point<int>(100, 66));
     addAndMakeVisible (c);
   }
 
   {
     StepResponseChart* c = new StepResponseChart (m_listeners);
     c->setBounds (r.getX() + w + gap + w + gap, r.getY() + h + gap + h + gap, w, h);
-    addToLayout (c, Point<int>(66, 66), Point<int>(100, 100));
+    addToLayout (c, juce::Point<int>(66, 66), juce::Point<int>(100, 100));
     addAndMakeVisible (c);
   }
 }
 
-void MainPanel::buildFamilyMenu (ComboBox* ctrl)
+void MainPanel::buildFamilyMenu (juce::ComboBox* ctrl)
 {
   ctrl->clear();
 
@@ -302,7 +302,7 @@ void MainPanel::buildFamilyMenu (ComboBox* ctrl)
   ctrl->addItem ("Custom",       8);
 }
 
-void MainPanel::buildTypeMenu (ComboBox* ctrl)
+void MainPanel::buildTypeMenu (juce::ComboBox* ctrl)
 {
   ctrl->clear();
 
@@ -389,9 +389,9 @@ void MainPanel::buildTypeMenu (ComboBox* ctrl)
   };
 }
 
-void MainPanel::paint (Graphics& g)
+void MainPanel::paint (juce::Graphics& g)
 {
-	g.fillAll (Colour (0xffc1d0ff));
+	g.fillAll (juce::Colour (0xffc1d0ff));
 }
 
 //------------------------------------------------------------------------------
@@ -418,12 +418,12 @@ void MainPanel::createFilterState (Dsp::Filter** pFilter, Dsp::Filter** pAudioFi
 
   switch (m_menuStateType->getSelectedId())
   {
-  case 1: createFilterDesign <DesignType, Dsp::DirectFormI> (pFilter, pAudioFilter); break;
-  case 2: createFilterDesign <DesignType, Dsp::DirectFormII> (pFilter, pAudioFilter); break;
-  case 3: createFilterDesign <DesignType, Dsp::TransposedDirectFormI> (pFilter, pAudioFilter); break;
-  case 4: createFilterDesign <DesignType, Dsp::TransposedDirectFormII> (pFilter, pAudioFilter); break;
+  case 1: createFilterDesign <DesignType, Dsp::DirectFormI<float> > (pFilter, pAudioFilter); break;
+  case 2: createFilterDesign <DesignType, Dsp::DirectFormII<float> > (pFilter, pAudioFilter); break;
+  case 3: createFilterDesign <DesignType, Dsp::TransposedDirectFormI<float> > (pFilter, pAudioFilter); break;
+  case 4: createFilterDesign <DesignType, Dsp::TransposedDirectFormII<float> > (pFilter, pAudioFilter); break;
   default:
-    createFilterDesign <DesignType, Dsp::DirectFormI> (pFilter, pAudioFilter);
+    createFilterDesign <DesignType, Dsp::DirectFormI<float> > (pFilter, pAudioFilter);
   };
 }
 
@@ -570,15 +570,15 @@ void MainPanel::createFilter ()
 
 void MainPanel::setAudio (int audioId)
 {
-  AudioSource* source = 0;
+    juce::AudioSource* source = 0;
 
   switch (audioId)
   {
   case 1: // Amen Break
     {
-      WavAudioFormat waf;
-      AudioFormatReader* afr = waf.createReaderFor (
-        new MemoryInputStream (binaries::amenbreakloop_wav,
+        juce::WavAudioFormat waf;
+        juce::AudioFormatReader* afr = waf.createReaderFor (
+        new juce::MemoryInputStream (binaries::amenbreakloop_wav,
           binaries::amenbreakloop_wavSize,
           false),
         true);
@@ -589,7 +589,7 @@ void MainPanel::setAudio (int audioId)
 
   case 2: // sine wave
     {
-      ToneGeneratorAudioSource* tgas = new ToneGeneratorAudioSource ();
+        juce::ToneGeneratorAudioSource* tgas = new juce::ToneGeneratorAudioSource ();
       tgas->setFrequency (440);
       tgas->setAmplitude (1.f);
       source = tgas;
@@ -608,7 +608,7 @@ void MainPanel::setAudio (int audioId)
   MainApp::getInstance().getAudioOutput().setSource (source);
 }
 
-void MainPanel::buttonClicked (Button* ctrl)
+void MainPanel::buttonClicked (juce::Button* ctrl)
 {
   if (ctrl == m_resetButton)
   {
@@ -616,7 +616,7 @@ void MainPanel::buttonClicked (Button* ctrl)
   }
 }
 
-void MainPanel::sliderValueChanged (Slider* ctrl)
+void MainPanel::sliderValueChanged (juce::Slider* ctrl)
 {
   if (ctrl == m_volumeSlider)
   {
@@ -629,7 +629,7 @@ void MainPanel::sliderValueChanged (Slider* ctrl)
   }
 }
 
-void MainPanel::comboBoxChanged (ComboBox* ctrl)
+void MainPanel::comboBoxChanged (juce::ComboBox* ctrl)
 {
   if (ctrl == m_menuFamily)
   {
@@ -675,25 +675,25 @@ void MainPanel::onFilterParameters ()
 
 //------------------------------------------------------------------------------
 
-const StringArray MainPanel::getMenuBarNames()
+juce::StringArray MainPanel::getMenuBarNames()
 {
-  StringArray names;
+    juce::StringArray names;
   names.add (TRANS("File"));
   names.add (TRANS("Help"));
   return names;
 }
 
-const PopupMenu MainPanel::getMenuForIndex (int topLevelMenuIndex, const String& menuName)
+juce::PopupMenu MainPanel::getMenuForIndex (int topLevelMenuIndex, const juce::String& menuName)
 {
-  PopupMenu menu;
-  ApplicationCommandManager* commandManager = MainApp::getInstance().getCommandManager();
+    juce::PopupMenu menu;
+    juce::ApplicationCommandManager* commandManager = MainApp::getInstance().getCommandManager();
 
   switch (topLevelMenuIndex)
   {
   case 0:
     menu.addCommandItem (commandManager, MainApp::cmdSettings);
     menu.addSeparator ();
-    menu.addCommandItem (commandManager, StandardApplicationCommandIDs::quit);
+    menu.addCommandItem (commandManager, juce::StandardApplicationCommandIDs::quit);
     break;
 
   case 1:

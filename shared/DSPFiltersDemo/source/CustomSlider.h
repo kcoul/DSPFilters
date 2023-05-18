@@ -38,15 +38,15 @@ THE SOFTWARE.
 
 #include "Common.h"
 
-class CustomSlider : public Slider
+class CustomSlider : public juce::Slider
 {
 public:
-  CustomSlider (String name = String::empty)
+  CustomSlider (juce::String name = juce::String())
     : Slider (name)
   {
   }
 
-  void mouseDrag (const MouseEvent& e)
+  void mouseDrag (const juce::MouseEvent& e)
   {
     e.source.enableUnboundedMouseMovement (true, false);
     Slider::mouseDrag (e);

@@ -47,17 +47,17 @@ THE SOFTWARE.
  *
  */
 class AudioOutput
-  : private AudioIODeviceCallback
+  : private juce::AudioIODeviceCallback
 {
 public:
   AudioOutput ();
   ~AudioOutput ();
 
-  AudioDeviceManager& getAudioDeviceManager();
+    juce::AudioDeviceManager& getAudioDeviceManager();
 
   void setGain (float gainDb);
   void setTempo (float tempo);
-  void setSource (AudioSource* source);
+  void setSource (juce::AudioSource* source);
   void setFilter (Dsp::Filter* filter);
   void setFilterParameters (Dsp::Params parameters);
   void resetFilter ();
@@ -65,12 +65,12 @@ public:
 protected:
   void doSetGain (float gain);
   void doSetTempo (float tempo);
-  void doSetSource (ResamplingAudioSource* source);
+  void doSetSource (juce::ResamplingAudioSource* source);
   void doSetFilter (Dsp::Filter* filter);
   void doSetFilterParameters (Dsp::Params parameters);
   void doResetFilter ();
 
-  void audioDeviceAboutToStart (AudioIODevice* device);
+  void audioDeviceAboutToStart (juce::AudioIODevice* device);
 
   void audioDeviceIOCallback (const float** inputChannelData,
                               int numInputChannels,
@@ -81,11 +81,11 @@ protected:
   void audioDeviceStopped ();
 
 private:
-  ScopedPointer<AudioDeviceManager> m_audioDeviceManager;
+    juce::ScopedPointer<juce::AudioDeviceManager> m_audioDeviceManager;
   ThreadQueue m_queue;
-  AudioIODevice* m_device;
-  ScopedPointer<FilteringAudioSource> m_filteringAudioSource;
-  ResamplingAudioSource* m_resampler;
+    juce::AudioIODevice* m_device;
+    juce::ScopedPointer<FilteringAudioSource> m_filteringAudioSource;
+    juce::ResamplingAudioSource* m_resampler;
   float m_gain;
   float m_gainNext;
   float m_tempo;

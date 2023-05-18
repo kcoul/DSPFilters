@@ -94,7 +94,7 @@ private:
   void put (Element* element);
 
 private:
-  CriticalSection m_mutex;
+    juce::CriticalSection m_mutex;
   bool m_isClosed;
   Element* m_head;
   Element* m_tail;

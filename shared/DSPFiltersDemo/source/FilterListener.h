@@ -50,6 +50,6 @@ public:
   virtual void onFilterParameters () { }
 };
 
-typedef ListenerList<FilterListener> FilterListeners;
+typedef juce::ListenerList<FilterListener> FilterListeners;
 
 #endif

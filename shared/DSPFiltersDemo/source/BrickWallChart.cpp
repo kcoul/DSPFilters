@@ -46,21 +46,21 @@ BrickWallChart::BrickWallChart (FilterListeners& listeners)
 {
 }
 
-const String BrickWallChart::getName () const
+const juce::String BrickWallChart::getName () const
 {
   return "Magnitude";
 }
 
 int BrickWallChart::yToScreen (float y)
 {
-  AffineTransform t = calcTransform();
-  Point<float> p (0, y);
+    juce::AffineTransform t = calcTransform();
+    juce::Point<float> p (0, y);
   return int(p.transformedBy (t).getY());
 }
 
-void BrickWallChart::paintContents (Graphics& g)
+void BrickWallChart::paintContents (juce::Graphics& g)
 {
-  AffineTransform t = calcTransform();
+    juce::AffineTransform t = calcTransform();
 
   {
     int y = yToScreen (0);
@@ -70,7 +70,7 @@ void BrickWallChart::paintContents (Graphics& g)
                 getLocalBounds().getWidth() - 2, 1);
 
     g.setColour (m_cText);
-    drawText (g, Point<int> (6, y-2), "0");
+    drawText (g, juce::Point<int> (6, y-2), "0");
   }
 
   {
@@ -81,12 +81,12 @@ void BrickWallChart::paintContents (Graphics& g)
                 getLocalBounds().getWidth() - 2, 1);
 
     g.setColour (m_cText);
-    drawText (g, Point<int> (6, y+2), "1", Justification::topLeft);
+    drawText (g, juce::Point<int> (6, y+2), "1", juce::Justification::topLeft);
   }
 
   // path
-  g.setColour (Colours::blue);
-  g.strokePath (m_path, 1, t);
+  g.setColour (juce::Colours::blue);
+  g.strokePath (m_path, juce::PathStrokeType(1), t);
 }
 
 void BrickWallChart::update ()
@@ -98,8 +98,8 @@ void BrickWallChart::update ()
   {
     m_isDefined = true;
 
-    const Rectangle<int> bounds = getLocalBounds ();
-    const Rectangle<int> r = bounds.reduced (4, 4);
+    const juce::Rectangle<int> bounds = getLocalBounds ();
+    const juce::Rectangle<int> r = bounds.reduced (4, 4);
 
     for (int xi = 0; xi < r.getWidth(); ++xi )
     {
@@ -134,15 +134,15 @@ void BrickWallChart::update ()
   repaint();
 }
 
-AffineTransform BrickWallChart::calcTransform ()
+juce::AffineTransform BrickWallChart::calcTransform ()
 {
-  const Rectangle<int> bounds = getLocalBounds ();
-  const Rectangle<int> r = bounds.reduced (4, 4);
+  const juce::Rectangle<int> bounds = getLocalBounds ();
+  const juce::Rectangle<int> r = bounds.reduced (4, 4);
 
-  AffineTransform t;
+    juce::AffineTransform t;
 
   // scale x from 0..1 to 0..getWidth(), and flip vertical
-  t = AffineTransform::scale (float(r.getWidth()), -1.f);
+  t = juce::AffineTransform::scale (float(r.getWidth()), -1.f);
 
   // scale y from gain to 0..1 bounds in r
   t = t.scaled (1.f, m_scale_y);

@@ -41,22 +41,22 @@ PoleZeroChart::PoleZeroChart (FilterListeners& listeners)
 {
 }
 
-const String PoleZeroChart::getName () const
+const juce::String PoleZeroChart::getName () const
 {
   return "Pole/Zero";
 }
 
-void PoleZeroChart::paintContents (Graphics& g)
+void PoleZeroChart::paintContents (juce::Graphics& g)
 {
-	Colour cPole (0xd0ff0000);
-	Colour cZero (0xd02020ff);
+    juce::Colour cPole (0xd0ff0000);
+    juce::Colour cZero (0xd02020ff);
 	
-	Rectangle<int> bounds = getLocalBounds();
+    juce::Rectangle<int> bounds = getLocalBounds();
 
-	short size = (jmin (getWidth(), getHeight()) + 2) / 3;
+	short size = (juce::jmin (getWidth(), getHeight()) + 2) / 3;
 
   // scale the graph down if the pole/zeroes lie outside the unit disc
-  AffineTransform t = AffineTransform::identity;
+    juce::AffineTransform t = juce::AffineTransform::identity;
 
   {
     float margin = 0.2f;
@@ -71,18 +71,18 @@ void PoleZeroChart::paintContents (Graphics& g)
 
 	g.setColour (m_cAxis);
   {
-    Point<float> p = Point<float>(100000, 0).transformedBy (t);
+      juce::Point<float> p = juce::Point<float>(100000, 0).transformedBy (t);
     g.drawLine (-p.getX(), p.getY(), p.getX(), p.getY(), 1);
   }
   {
-    Point<float> p = Point<float>(0, 100000).transformedBy (t);
+      juce::Point<float> p = juce::Point<float>(0, 100000).transformedBy (t);
     g.drawLine (p.getX(), -p.getY(), p.getX(), p.getY(), 1);
   }
   {
-    Point<float> p0 = Point<float>(-1, -1).transformedBy (t);
-    Point<float> p1 = Point<float>( 1,  1).transformedBy (t);
+      juce::Point<float> p0 = juce::Point<float>(-1, -1).transformedBy (t);
+      juce::Point<float> p1 = juce::Point<float>( 1,  1).transformedBy (t);
     g.drawEllipse (p0.getX(), p0.getY(),
-                   p1.getX()-p0.getX(), p1.getY()-p0.getY(), 1);
+                   abs(p1.getX()-p0.getX()), abs(p1.getY()-p0.getY()), 1);
   }
 
   const float r = 3.5f;
@@ -94,7 +94,7 @@ void PoleZeroChart::paintContents (Graphics& g)
     if (!pzp.is_nan())
     {
       {
-        Point<float> p (float(pzp.poles.first.real()),
+          juce::Point<float> p (float(pzp.poles.first.real()),
                         float(pzp.poles.first.imag()));
         p = p.transformedBy (t);
         g.setColour (cPole);
@@ -103,7 +103,7 @@ void PoleZeroChart::paintContents (Graphics& g)
       }
 
       {
-        Point<float> p (float(pzp.zeros.first.real()),
+          juce::Point<float> p (float(pzp.zeros.first.real()),
                         float(pzp.zeros.first.imag()));
         p = p.transformedBy (t);
         g.setColour (cZero);
@@ -113,7 +113,7 @@ void PoleZeroChart::paintContents (Graphics& g)
       if (!pzp.isSinglePole())
       {
         {
-          Point<float> p (float(pzp.poles.second.real()),
+            juce::Point<float> p (float(pzp.poles.second.real()),
                           float(pzp.poles.second.imag()));
           p = p.transformedBy (t);
           g.setColour (cPole);
@@ -122,7 +122,7 @@ void PoleZeroChart::paintContents (Graphics& g)
         }
 
         {
-          Point<float> p (float(pzp.zeros.second.real()),
+            juce::Point<float> p (float(pzp.zeros.second.real()),
                           float(pzp.zeros.second.imag()));
           p = p.transformedBy (t);
           g.setColour (cZero);
@@ -156,16 +156,16 @@ void PoleZeroChart::addPoleZeros (const std::vector<Dsp::PoleZeroPair>& vpz)
     const Dsp::PoleZeroPair& pzp = vpz[i];
     m_vpz.push_back (pzp);
 
-    m_max = jmax (m_max, fabs(pzp.poles.first.real()));
-    m_max = jmax (m_max, fabs(pzp.poles.first.imag()));
-    m_max = jmax (m_max, fabs(pzp.zeros.first.real()));
-    m_max = jmax (m_max, fabs(pzp.zeros.first.imag()));
+    m_max = juce::jmax (m_max, fabs(pzp.poles.first.real()));
+    m_max = juce::jmax (m_max, fabs(pzp.poles.first.imag()));
+    m_max = juce::jmax (m_max, fabs(pzp.zeros.first.real()));
+    m_max = juce::jmax (m_max, fabs(pzp.zeros.first.imag()));
     if (!pzp.isSinglePole())
     {
-      m_max = jmax (m_max, fabs(pzp.poles.second.real()));
-      m_max = jmax (m_max, fabs(pzp.poles.second.imag()));
-      m_max = jmax (m_max, fabs(pzp.zeros.second.real()));
-      m_max = jmax (m_max, fabs(pzp.zeros.second.imag()));
+      m_max = juce::jmax (m_max, fabs(pzp.poles.second.real()));
+      m_max = juce::jmax (m_max, fabs(pzp.poles.second.imag()));
+      m_max = juce::jmax (m_max, fabs(pzp.zeros.second.real()));
+      m_max = juce::jmax (m_max, fabs(pzp.zeros.second.imag()));
     }
   }
 }
