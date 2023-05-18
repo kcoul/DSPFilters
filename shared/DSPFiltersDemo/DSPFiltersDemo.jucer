@@ -82,9 +82,12 @@
   <EXPORTFORMATS>
     <XCODE_MAC targetFolder="Builds/MacOSX" externalLibraries="DSPFilters">
       <CONFIGURATIONS>
-        <CONFIGURATION isDebug="1" name="Debug" targetName="DSPFiltersDemo" headerPath="../../../DSPFilters/include"/>
-        <CONFIGURATION isDebug="0" name="Release" targetName="DSPFiltersDemo" libraryPath="../../../../cmake-build-release/DSPFilters"
-                       headerPath="../../../DSPFilters/include"/>
+        <CONFIGURATION isDebug="1" name="Debug" targetName="DSPFiltersDemo" headerPath="../../../DSPFilters/include"
+                       libraryPath="../../../cmake-build-debug/DSPFilters" macOSDeploymentTarget="10.14"
+                       osxCompatibility="10.14 SDK"/>
+        <CONFIGURATION isDebug="0" name="Release" targetName="DSPFiltersDemo" libraryPath="../../../cmake-build-release/DSPFilters"
+                       headerPath="../../../DSPFilters/include" macOSDeploymentTarget="10.14"
+                       osxCompatibility="10.14 SDK"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path="../../../JUCE/modules"/>
