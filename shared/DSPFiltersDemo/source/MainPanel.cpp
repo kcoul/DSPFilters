@@ -68,7 +68,7 @@ MainPanel::MainPanel()
   x = x0;
 
   {
-      juce::ComboBox* c = new juce::ComboBox;
+    juce::ComboBox* c = new juce::ComboBox;
     c->setBounds (x, y, 160, 24);
     addToLayout (c, anchorTopLeft);
     addAndMakeVisible (c);
@@ -80,7 +80,7 @@ MainPanel::MainPanel()
   x = this->getChildComponent (this->getNumChildComponents() - 1)->getBounds().getRight() + gap;
 
   {
-      juce::ComboBox* c = new juce::ComboBox;
+    juce::ComboBox* c = new juce::ComboBox;
     c->setBounds (x, y, 120, 24);
     addToLayout (c, anchorTopLeft);
     addAndMakeVisible (c);
@@ -92,7 +92,7 @@ MainPanel::MainPanel()
   x = this->getChildComponent (this->getNumChildComponents() - 1)->getBounds().getRight() + gap;
 
   {
-      juce::ComboBox* c = new juce::ComboBox;
+    juce::ComboBox* c = new juce::ComboBox;
     c->setBounds (x, y, 120, 24);
     c->addItem ("Amen Break", 1);
     c->addItem ("Sine Wave (440Hz)", 2);
@@ -121,7 +121,7 @@ MainPanel::MainPanel()
   const int hfc = 80;
 
   {
-      juce::Slider* c = new juce::Slider;
+    juce::Slider* c = new juce::Slider;
     c->setBounds (x - 20, y, 20, hfc + gap + 24);
     c->setSliderStyle (juce::Slider::LinearVertical);
     c->setTextBoxStyle (juce::Slider::NoTextBox, true, 0, 0);
@@ -137,7 +137,7 @@ MainPanel::MainPanel()
   x = this->getChildComponent (this->getNumChildComponents() - 1)->getBounds().getX() - gap;
  
   {
-      juce::Slider* c = new juce::Slider;
+    juce::Slider* c = new juce::Slider;
     c->setBounds (x - 20, y, 20, hfc + gap + 24);
     c->setSliderStyle (juce::Slider::LinearVertical);
     c->setTextBoxStyle (juce::Slider::NoTextBox, true, 0, 0);
@@ -165,7 +165,7 @@ MainPanel::MainPanel()
   x = x0;
 
   {
-      juce::ComboBox* c = new juce::ComboBox;
+    juce::ComboBox* c = new juce::ComboBox;
     c->setBounds (x, y, 120, 24);
     c->addItem ("Direct Form I", 1);
     c->addItem ("Direct Form II", 2);
@@ -183,7 +183,7 @@ MainPanel::MainPanel()
   x = this->getChildComponent (this->getNumChildComponents() - 1)->getBounds().getRight() + gap;
 
   {
-      juce::ComboBox* c = new juce::ComboBox;
+    juce::ComboBox* c = new juce::ComboBox;
     c->setBounds (x, y, 200, 24);
     c->addItem ("Parameter Smoothing", 1);
     c->addItem ("Pole/Zero Interpolation", 2); c->setItemEnabled (2, false);
@@ -213,11 +213,11 @@ MainPanel::MainPanel()
   const juce::Rectangle<int> r (x, y, w - (x + gap), h - (y + gap));
   createCharts (r);
 
-	setSize (w, h);
+  setSize (w, h);
 
   setMinimumSize (256, 256);
 
-	activateLayout();
+  activateLayout();
 
   m_menuFamily->setSelectedId (1);
   m_menuAudio->setSelectedId (1);
@@ -300,6 +300,7 @@ void MainPanel::buildFamilyMenu (juce::ComboBox* ctrl)
   ctrl->addItem ("Bessel",       6);
   ctrl->addItem ("Legendre",     7);
   ctrl->addItem ("Custom",       8);
+  ctrl->addItem ("RASTA",        9);
 }
 
 void MainPanel::buildTypeMenu (juce::ComboBox* ctrl)
@@ -386,7 +387,14 @@ void MainPanel::buildTypeMenu (juce::ComboBox* ctrl)
   case 8: // Custom
     ctrl->addItem ("Two-Pole", 1);
     ctrl->addItem ("One-Pole", 2);
+    break;
+
+  case 9: // RASTA
+    break;
   };
+
+
+
 }
 
 void MainPanel::paint (juce::Graphics& g)
@@ -551,6 +559,17 @@ void MainPanel::createFilter ()
     case 1: createFilterState <Dsp::Custom::Design::TwoPole> (&f, &fo); break;
     case 2: createFilterState <Dsp::Custom::Design::OnePole> (&f, &fo); break;
     };
+  }
+
+  //
+  // RASTA
+  //
+  else if (familyId == 9)
+  {
+    switch (typeId)
+    {
+    
+    }
   }
 
   if (f)
