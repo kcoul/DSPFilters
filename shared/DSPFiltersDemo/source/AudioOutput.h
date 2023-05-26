@@ -53,7 +53,7 @@ public:
   AudioOutput ();
   ~AudioOutput ();
 
-    juce::AudioDeviceManager& getAudioDeviceManager();
+  juce::AudioDeviceManager& getAudioDeviceManager();
 
   void setGain (float gainDb);
   void setTempo (float tempo);
@@ -70,15 +70,16 @@ protected:
   void doSetFilterParameters (Dsp::Params parameters);
   void doResetFilter ();
 
-  void audioDeviceAboutToStart (juce::AudioIODevice* device);
+  void audioDeviceAboutToStart (juce::AudioIODevice* device) override;
 
-  void audioDeviceIOCallback (const float** inputChannelData,
-                              int numInputChannels,
-                              float** outputChannelData,
-                              int numOutputChannels,
-                              int numSamples);
+  void audioDeviceIOCallbackWithContext(const float* const* inputChannelData,
+      int numInputChannels,
+      float* const* outputChannelData,
+      int numOutputChannels,
+      int numSamples,
+      const juce::AudioIODeviceCallbackContext& context) override;
 
-  void audioDeviceStopped ();
+  void audioDeviceStopped() override;
 
 private:
     juce::ScopedPointer<juce::AudioDeviceManager> m_audioDeviceManager;

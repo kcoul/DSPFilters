@@ -175,13 +175,14 @@ void AudioOutput::audioDeviceAboutToStart (juce::AudioIODevice* device)
                                          m_device->getCurrentSampleRate());
 }
 
-void AudioOutput::audioDeviceIOCallback (const float** inputChannelData,
+void AudioOutput::audioDeviceIOCallbackWithContext (const float* const* inputChannelData,
                                          int numInputChannels,
-                                         float** outputChannelData,
+                                         float* const* outputChannelData,
                                          int numOutputChannels,
-                                         int numSamples)
+                                         int numSamples,
+    const juce::AudioIODeviceCallbackContext& context)
 {
-  m_queue.process();
+    m_queue.process();
 
     juce::AudioSampleBuffer buffer (outputChannelData, numOutputChannels, numSamples);
     juce::AudioSourceChannelInfo info;
