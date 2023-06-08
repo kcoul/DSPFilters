@@ -123,8 +123,8 @@ public:
     {
         StateType* state = m_stateArray;
         const Biquad* stage = c.m_stageArray;
-        const typename StateType::FPType vsa = ac();
-        typename StateType::FPType out = in;
+        const typename StateType::FPType vsa = (float)ac();
+        typename StateType::FPType out = (float)in;
         out = (state++)->process1 (out, *stage++, vsa);
         for (int i = 0; i < c.m_numStages - 1; i++) {
             out = (state++)->process1 (out, *stage++, 0);

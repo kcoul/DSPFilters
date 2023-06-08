@@ -66,7 +66,9 @@ public:
     template <typename Sample>
     inline Sample process (const Sample in, const BiquadBase& b)
     {
+#pragma warning(disable:4244)
       return static_cast<Sample> (StateType::process1 (in, b, ac()));
+#pragma warning(default:4244)
     }
   };
 
