@@ -94,7 +94,7 @@ void AudioOutput::setTempo (float tempo)
 
 void AudioOutput::setSource (juce::AudioSource* source)
 {
-    juce::ResamplingAudioSource* resampler = new juce::ResamplingAudioSource (source, true);
+  juce::ResamplingAudioSource* resampler = new juce::ResamplingAudioSource (source, true);
   m_queue.call (bond (&AudioOutput::doSetSource, this, resampler));
 }
 
@@ -201,7 +201,7 @@ void AudioOutput::audioDeviceIOCallbackWithContext (const float* const* inputCha
       const int step = 1; // increase to reduce CPU usage
       int amount = juce::jmin (step, info.numSamples);
 
-        juce::AudioSourceChannelInfo b;
+      juce::AudioSourceChannelInfo b;
       b.buffer = &buffer;
       b.startSample = info.startSample;
       b.numSamples = amount;
